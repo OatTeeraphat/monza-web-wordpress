@@ -1,0 +1,7 @@
+@font-face {font-family: "Antique Olive Std";
+    src: url("./Antique_Olive_Std_1.eot"), /* IE9*/
+    url("./Antique_Olive_Std_2.eot") format("embedded-opentype"), /* IE6-IE8 */
+    url("./Antique_Olive_Std_3.woff2") format("woff2"), /* chrome firefox */
+    url("./Antique_Olive_Std_4.woff") format("woff"), /* chrome firefox */
+    url("./Antique_Olive_Std_5.ttf") format("truetype") /* chrome firefox opera Safari, Android, iOS 4.2+*/
+}
