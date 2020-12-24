@@ -328,3 +328,16 @@ require get_template_directory() . '/inc/template-tags.php';
  * Customizer additions.
  */
 require get_template_directory() . '/inc/customizer.php';
+
+
+if ( ! function_exists('dd') ) {
+
+    function dd($variable) {
+		echo '<div style="position: fixed; left: 0; right: 0; margin: 0 auto; top: 5vh; width: 90vw; height: 90vh; padding: 30px; background: #fff; z-index: 9999999999999999; border-radius: 5px;overflow: scroll;">';
+		echo '<pre>';
+		print_r( $variable );
+		echo '</pre>';
+		echo '</div>';
+    }
+
+}

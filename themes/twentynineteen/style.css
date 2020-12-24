@@ -8,7 +8,8 @@
 body {
 	color: #fff;
 	background-color: #1A1B19;
-	font-family: 'Montserrat', sans-serif;
+	font-family: 'Montserrat', 'Prompt', sans-serif;
+	letter-spacing: 0.5px;
 }
 
 hr {
@@ -39,9 +40,7 @@ a:hover, a:focus, a:active {
 
 /* bootstrap modified */
 
-.container {
-	overflow: hidden;
-}
+.container {overflow: hidden;}
 
 .navbar {
 	background-color: #0f0f0f;
@@ -93,6 +92,10 @@ a:hover, a:focus, a:active {
 	font-weight: 800;
 }
 
+.navbar .navbar-collapse .navbar-nav a:hover{
+	color: #fff;
+}
+
 .navbar .nav-item {
 	margin-right: 15px;
 	position: relative;
@@ -105,6 +108,8 @@ a:hover, a:focus, a:active {
 
 .nav-item .fe-menu {
 	width: 20px;
+	top: -2px;
+	position: relative;
 }
 
 .navbar-toggler:active,
@@ -112,6 +117,29 @@ a:hover, a:focus, a:active {
 	border: 0;
 	color: #fff;
 	outline: none;
+}
+
+.navbar-sub{
+	padding: 0;
+	list-style: none;
+	width: 200px;
+	position: absolute;
+	right: -15px;
+}
+.nav-sub-item{
+    padding: 10px 15px;
+    border-bottom: 1px solid #fff;
+    background: #000;
+    cursor:pointer;
+    transition : all 0.3s ease;
+}
+.nav-sub-item:last-child{
+    border-bottom: 0;
+}
+.nav-sub-item:hover{
+	background: #9E9E9E;
+}
+.nav-sub-item a{
 }
 
 .card {
@@ -215,6 +243,27 @@ a:hover, a:focus, a:active {
 	border-color: #008040;
 }
 
+.dropdown-language{
+
+}
+
+.dropdown-menu.dropdown-language.show{width: 60px;min-width: inherit;padding: 0;border-radius: 0;border: none;background-clip: inherit;}
+
+.dropdown-language a{
+    padding: .25rem;
+    text-align: center;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.dropdown-language a:last-child{
+	border-bottom : 0;
+}
+
+.dropdown-language a:hover{
+
+}
+
 .dropdown-menu.show {
 	width: calc(100% - 30px);
 }
@@ -222,6 +271,10 @@ a:hover, a:focus, a:active {
 .border-left-green{
 	border-left:7px solid #008040 ;
 
+}
+
+.overflow-inherit{
+	overflow: inherit!important;
 }
 
 
@@ -286,6 +339,7 @@ textarea.form-massage::placeholder{
 	font-weight: 800;
 	color: #fff;
 	height: auto;
+	min-width: inherit;
 }
 
 .btn-language:hover,
@@ -901,7 +955,12 @@ a.button,
     height: 5em;
     overflow: hidden;
 }
-
+.bold{
+	font-weight: 800;
+}
+.remove-bottom{
+	margin-bottom: -6em;
+}
 .image-box{
     overflow: hidden;
     border-radius: 15px;

@@ -451,50 +451,33 @@
 
 <script>
 
-$(function(){
-    var navbar = $('#nav-stickky');
-    var wpbar = $('#wpadminbar');
-    
-    $(window).scroll(function(){
-
-        var isDesktop = $(window).width() >= 768;
-        var isMobile = $(window).width() < 768;
-
-        if( isDesktop && $(window).scrollTop() >= 100){
-            navbar.removeClass('navbar-hide');
-            wpbar.addClass('d-none')
-        }
-        else if( isMobile < 768 && $(window).scrollTop() >= 60){
-            navbar.removeClass('navbar-hide');
-        } else {
-            navbar.addClass('navbar-hide');
-            wpbar.removeClass('d-none')
-        }
-    });
-
-});
-
-</script>
-
-
-<script>
-setTimeout(() => {
-    $("body").removeClass('overflow-hidden');
-    $("#preload").fadeOut(300);
-}, 1500);
-</script>
-
-<script>
-
-function applyBeforeunload() {
-    $(window).on('beforeunload', function() {
-        $('body').hide();
-        $(window).scrollTop(0);
-    });
+    function applyBeforeunload() {
+        $(window).on('beforeunload', function() {
+            $('body').hide();
+            $(window).scrollTop(0);
+        });
     }
     //applyBeforeunload();
     $(document).on('click', '[samepage]', function() {
-    $(window).off('beforeunload');
-    setTimeout(applyBeforeunload, 100);
-});
+        $(window).off('beforeunload');
+        setTimeout(applyBeforeunload, 100);
+    });
+
+    setTimeout(() => {
+        $("body").removeClass('overflow-hidden');
+        $("#preload").fadeOut(300);
+    }, 1500);
+
 </script>
+
+
+<style>
+<?php if ( ICL_LANGUAGE_CODE == 'th' ) : ?>
+
+    .navbar-nav a {
+        font-size: 15px;
+        letter-spacing: 0.75px;
+    }
+
+<?php endif;?>
+</style>

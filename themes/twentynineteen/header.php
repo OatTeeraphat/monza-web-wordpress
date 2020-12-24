@@ -10,7 +10,16 @@
  * @subpackage Twenty_Nineteen
  * @since Twenty Nineteen 1.0
  */
-?><!doctype html>
+
+$header_nav = get_field('header_nav', 'option');
+
+$url = get_the_permalink();
+$en_permalink = apply_filters( 'wpml_permalink', $url , 'en' ); 
+$th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
+
+#dd($en_permalink);
+?>
+<!doctype html>
 <html>
 <head>
 
@@ -20,7 +29,8 @@
 
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
 
-	<link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+    <link rel='stylesheet' href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;600&display=swap">
 	<link rel="stylesheet" href="https://cdn.plyr.io/3.6.2/plyr.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"/>
@@ -51,19 +61,19 @@
     </div>
 
     <nav class="navbar-top">
-        <div class="container">
+        <div class="container overflow-inherit">
             <div class="row">
                 <div class="col d-none d-lg-block">
-                    +662 999 9999 | SALES@MONZAFACTORY.COM
+                    <?php the_field('header_contact', 'option'); ?>
                 </div>
                 <div class="col text-right d-none d-md-block">
                     <div class="btn-group">
                         <button type="button" class="btn btn-language p-0 dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          EN
+                            <?php echo ICL_LANGUAGE_CODE == 'th' ? 'TH' : 'EN' ?>
                         </button>
-                        <div class="dropdown-menu">
-                          <a class="dropdown-item" href="#">EN</a>
-                          <a class="dropdown-item" href="#">TH</a>
+                        <div class="dropdown-menu dropdown-language">
+                          <a class="dropdown-item" href="<?php echo $en_permalink; ?>">EN</a>
+                          <a class="dropdown-item" href="<?php echo $th_permalink; ?>">TH</a>
                         </div>
                     </div>
                 </div>
@@ -72,10 +82,10 @@
     </nav>
 
     <nav id="nav-top" class="navbar navbar-expand-lg navbar-light navbar-sticky w-100">
-        <div class="container">
+        <div class="container overflow-inherit">
 
-            <a class="navbar-brand" href="#">
-                <img src="<?php echo get_template_directory_uri(); ?>/img/monza-factory-logo.png" alt="">
+            <a class="navbar-brand" href="<?php echo get_home_url(); ?>">
+                <img src="<?php the_field('header_logo', 'option'); ?>" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -86,33 +96,61 @@
 
                 <ul class="navbar-nav">
                     <!-- <li class="nav-item active"></li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT <i data-feather="chevron-down" class="fe"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PRODUCT <i data-feather="chevron-down" class="fe"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">GALLERY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACT</a>
-                    </li>
-                    <li class="nav-item mr-0 d-none d-xl-block">
-                        <a class="nav-link pr-0 pt-2" href="#"><i data-feather="menu" class="fe-menu text-white"></i></a>
-                    </li>
+                    <?php $header_nav_show = array_slice($header_nav, 0, 4);?>
+                    <?php foreach ( $header_nav_show as $nav) : ?>
+
+                        <li class="nav-item nav-toggle-sub">
+                            <a class="nav-link" href="<?php echo $nav['nav_main_url']; ?>"><span><?php echo $nav['nav_main']; ?></span> <i data-feather="chevron-down" class="fe <?php echo empty($nav['nav_has_sub']) ? 'd-none' : ''?> "></i></a>
+                        
+                        <?php if (!empty($nav['nav_has_sub'])): ?>
+                            <ul class="navbar-sub" style="display:none">
+
+                            <?php foreach ( $nav['nav_sub'] as $sub) : ?>
+
+                                <li class="nav-sub-item mr-0 d-none d-xl-block" onclick="location.href='<?php echo $sub['nav_sub_url'];?>'">
+                                    <a href="<?php echo $sub['nav_sub_url'];?>"><?php echo $sub['nav_sub_name'];?></a>
+                                </li> 
+
+                            <?php endforeach; ?>
+
+                            </ul>
+                        <?php endif; ?>
+
+                        </li>
+
+                    <?php endforeach; ?>
+                    
+                    <?php $header_nav_collapse = array_slice($header_nav, 4);?>
+                    <?php if (!empty($header_nav_collapse)): ?>
+                        <li class="nav-item mr-0 d-none d-xl-block nav-toggle-sub">
+                            <a class="nav-link pr-0 pt-2"><i data-feather="menu" class="fe-menu text-white"></i></a>
+                            <ul class="navbar-sub" style="display:none">
+
+                            <?php foreach ( $header_nav_collapse as $collapse) : ?>
+
+                                <li class="nav-sub-item mr-0 d-none d-xl-block" onclick="location.href='<?php echo $sub['nav_sub_url'];?>'">
+                                    <a href="<?php echo $collapse['nav_main_url'];?>"><?php echo $collapse['nav_main'];?></a>
+                                </li> 
+
+                            <?php endforeach; ?>
+
+                            </ul>
+                        </li>
+
+                    <?php endif; ?>
+
                 </ul>
-                
+
             </div>
 
         </div>
     </nav>
 
     <nav id="nav-stickky" class="navbar navbar-expand-lg navbar-light position-fixed w-100 navbar-hide">
-        <div class="container">
+        <div class="container overflow-inherit">
 
             <a class="navbar-brand" href="#">
-                <img src="<?php echo get_template_directory_uri(); ?>/img/monza-factory-logo.png" alt="">
+                <img src="<?php the_field('header_logo', 'option'); ?>" alt="">
             </a>
 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -123,27 +161,98 @@
 
                 <ul class="navbar-nav">
                     <!-- <li class="nav-item active"></li> -->
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ABOUT <i data-feather="chevron-down" class="fe"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">PRODUCT <i data-feather="chevron-down" class="fe"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">GALLERY</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">CONTACT</a>
-                    </li>
-                    <li class="nav-item mr-0  d-none d-xl-block">
-                        <a class="nav-link pr-0 pt-2" href="#"><i data-feather="menu" class="fe-menu text-white"></i></a>
-                    </li>
+                    <?php $header_nav_show = array_slice($header_nav, 0, 4);?>
+                    <?php foreach ( $header_nav_show as $nav) : ?>
+
+                        <li class="nav-item nav-toggle-sub">
+                            <a class="nav-link" href="<?php echo $nav['nav_main_url']; ?>"><span><?php echo $nav['nav_main']; ?></span> <i data-feather="chevron-down" class="fe <?php echo empty($nav['nav_has_sub']) ? 'd-none' : ''?> "></i></a>
+                        
+                        <?php if (!empty($nav['nav_has_sub'])): ?>
+                            <ul class="navbar-sub" style="display:none">
+
+                            <?php foreach ( $nav['nav_sub'] as $sub) : ?>
+
+                                <li class="nav-sub-item mr-0 d-none d-xl-block" onclick="location.href='<?php echo $sub['nav_sub_url'];?>'">
+                                    <a href="<?php echo $sub['nav_sub_url'];?>"><?php echo $sub['nav_sub_name'];?></a>
+                                </li> 
+
+                            <?php endforeach; ?>
+
+                            </ul>
+                        <?php endif; ?>
+
+                        </li>
+
+                    <?php endforeach; ?>
+                    
+                    <?php $header_nav_collapse = array_slice($header_nav, 4);?>
+                    <?php if (!empty($header_nav_collapse)): ?>
+                        <li class="nav-item mr-0 d-none d-xl-block nav-toggle-sub">
+                            <a class="nav-link pr-0 pt-2"><i data-feather="menu" class="fe-menu text-white"></i></a>
+                            <ul class="navbar-sub" style="display:none">
+
+                            <?php foreach ( $header_nav_collapse as $collapse) : ?>
+
+                                <li class="nav-sub-item mr-0 d-none d-xl-block" onclick="location.href='<?php echo $sub['nav_sub_url'];?>'">
+                                    <a href="<?php echo $collapse['nav_main_url'];?>"><?php echo $collapse['nav_main'];?></a>
+                                </li> 
+
+                            <?php endforeach; ?>
+
+                            </ul>
+                        </li>
+
+                    <?php endif; ?>
+
                 </ul>
                 
             </div>
 
         </div>
     </nav>
+
+
+    <script>
+
+        $(function(){
+            var navbar = $('#nav-stickky');
+            var wpbar = $('#wpadminbar');
+            var sub = $(".navbar-sub");
+            
+            $(window).scroll(function(){
+
+                var isDesktop = $(window).width() >= 768;
+                var isMobile = $(window).width() < 768;
+
+                if( isDesktop && $(window).scrollTop() >= 100){
+                    navbar.removeClass('navbar-hide');
+                    wpbar.addClass('d-none')
+                    sub.fadeOut(0)
+                }
+                else if( isMobile < 768 && $(window).scrollTop() >= 60){
+                    navbar.removeClass('navbar-hide');
+                } else {
+                    navbar.addClass('navbar-hide');
+                    wpbar.removeClass('d-none')
+                }
+
+            });
+
+        });
+
+    </script>
+
+    <script>
+
+        $('.nav-toggle-sub').on('mouseenter', function(e){
+            $(this).children(".navbar-sub").fadeIn(300)
+        })
+        $('.nav-toggle-sub').on('mouseleave', function(e){
+            $(this).children(".navbar-sub").fadeOut(200)
+        })
+
+    </script>
+
 
 
 
