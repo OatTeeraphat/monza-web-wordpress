@@ -5,7 +5,14 @@
 */
 
 get_header();
+
+$query = new WP_Query( array( 'post_type' => 'blog' ) );
+//dd($query->posts);
+//dd(get_post_type_archive_link());
+//dd($thumbnail)
 ?>
+
+
 
 
 <!--Banner-->
@@ -36,38 +43,34 @@ get_header();
             <div class="row">
                 <div class="blog-vdo col-12 col-lg-6">
                     <div class="owl-carousel owl-theme">
-                        <div class="row my-3 item">
-                            <div class="col-12">
-                                <a href="#">
-                                    <div class="video-box">
-                                        <div class="play-button">
-                                            <span class="triangle-right"></span>
+                        <?php if ( $query->have_posts() ) : ?>
+
+                            <?php foreach ($query->posts as $item) : ?>
+                            <?php $postblog_title = get_field('postblog_title', $item->ID ); ?> 
+                                <div class="row my-3 item">        
+                                        <div class="col-12">
+                                            <a href="<?php echo get_post_permalink($item->ID); ?>">
+                                                <div class="video-box">
+                                                    <div class="video-box--image" style="background-image: url(<?php echo $postblog_title['postblog_title_imgblog']['sizes']['medium_large']; ?>)"></div>
+                                                </div>
+                                                <div class="my-3 mx-0 mx-md-2">
+                                                    <h3 class="mb-2"><?php echo $item->post_title;?></h3>
+                                                    <p class="m-0 p-0">
+                                                    <?php 
+                                                        echo substr(strip_tags($postblog_title['postblog_title_blog']), 0, 200);
+                                                    ?>
+                                                    </p>
+                                                </div>
+                                            </a>
                                         </div>
-                                        <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/K2fhljO9V00/maxresdefault.jpg)"></div>
-                                    </div>
-                                    <div class="my-3 mx-0 mx-md-2">
-                                        <h3 class="mb-2">All New D-Max</h3>
-                                        <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="row my-3 item">
-                            <div class="col-12">
-                                <a href="#">
-                                    <div class="video-box">
-                                        <div class="play-button">
-                                            <span class="triangle-right"></span>
-                                        </div>
-                                        <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/jO1WkUloMj0/maxresdefault.jpg)"></div>
-                                    </div>                                <div class="my-3 mx-2">
-                                        <h3 class="mb-2">All New D-Max</h3>
-                                        <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
+                                </div>         
+                            <?php endforeach; ?>
+                            
+                        <?php endif; ?>
+
                     </div>
+                        
+                    
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="row " style="justify-content: center;">
@@ -80,6 +83,8 @@ get_header();
                             <p class="mb-md-2 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores </p>
                         </div>
                     </div>
+
+                    
                     <div class="row " style="justify-content: center;">
                         <div class="col-12 col-md-6 col-lg-4">
                             <div class="home-blog-img my-3" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/blog_02.jpg');">
@@ -117,65 +122,35 @@ get_header();
                     <h2 class="section_title mt-2 mb-0">Lasted News</h2>
                 </div>
             </div>
+                   
+                <div class="row mt-4 mt-md-5">
+                     <?php if ( $query->have_posts() ) : ?>
 
-            <div class="row mt-4 mt-md-5">
-                <div class="col-12 col-md-6 mb-4 mb-md-5">
-                    <a href="#">
-                        <div class="video-box">
-                            <div class="play-button">
-                                <span class="triangle-right"></span>
+                        <?php foreach ($query->posts as $item) : ?>
+                        <?php $postblog_title = get_field('postblog_title', $item->ID ); ?>  
+                            <div class="col-12 col-md-6 mb-4 mb-md-5">
+                                <a href="<?php echo get_post_permalink($item->ID); ?>">
+                                    <div class="video-box">
+                                        <div class="play-button">
+                                            <span class="triangle-right"></span>
+                                        </div>
+                                        <div class="video-box--image" style="background-image: url(<?php echo $postblog_title['postblog_title_imgblog']['sizes']['medium_large']; ?>)"></div>
+                                    </div>
+                                    <div class="my-3 mx-0 mx-md-2">
+                                        <h3 class="mb-2 strong"><?php echo $item->post_title;?></h3>
+                                        <p class="m-0 p-0">
+                                            <?php 
+                                                echo substr(strip_tags($postblog_title['postblog_title_blog']), 0, 200);
+                                            ?>
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
-                            <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/K2fhljO9V00/maxresdefault.jpg)"></div>
-                        </div>
-                        <div class="my-3 mx-0 mx-md-2">
-                            <h3 class="mb-2 strong">All New D-Max</h3>
-                            <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                        </div>
-                    </a>
+                        <?php endforeach; ?>
+                            
+                    <?php endif; ?>
+                   
                 </div>
-                <div class="col-12 col-md-6 mb-4 mb-md-5">
-                    <a href="#">
-                        <div class="video-box">
-                            <div class="play-button">
-                                <span class="triangle-right"></span>
-                            </div>
-                            <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/K2fhljO9V00/maxresdefault.jpg)"></div>
-                        </div>
-                        <div class="my-3 mx-0 mx-md-2">
-                            <h3 class="mb-2 strong">All New D-Max</h3>
-                            <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-md-5">
-                    <a href="#">
-                        <div class="video-box">
-                            <div class="play-button">
-                                <span class="triangle-right"></span>
-                            </div>
-                            <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/K2fhljO9V00/maxresdefault.jpg)"></div>
-                        </div>
-                        <div class="my-3 mx-0 mx-md-2">
-                            <h3 class="mb-2 strong">All New D-Max</h3>
-                            <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="col-12 col-md-6 mb-4 mb-md-5">
-                    <a href="#">
-                        <div class="video-box">
-                            <div class="play-button">
-                                <span class="triangle-right"></span>
-                            </div>
-                            <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/K2fhljO9V00/maxresdefault.jpg)"></div>
-                        </div>
-                        <div class="my-3 mx-0 mx-md-2">
-                            <h3 class="mb-2 strong">All New D-Max</h3>
-                            <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                        </div>
-                    </a>
-                </div>
-            </div>
 
         </div>
 
