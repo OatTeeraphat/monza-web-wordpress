@@ -341,3 +341,12 @@ if ( ! function_exists('dd') ) {
     }
 
 }
+
+
+function get_permalink_wpml($postname, $lang) {
+
+	$url = home_url( '/'. $postname .'/' );
+	return apply_filters( 'wpml_permalink', $url , $lang ); 
+
+}
+

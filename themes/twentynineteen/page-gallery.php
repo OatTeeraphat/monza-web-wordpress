@@ -6,8 +6,11 @@
 * @subpackage Twenty_Fourteen
 * @since Twenty Fourteen 1.0
 */
-
 get_header();
+
+$query = new WP_Query( array( 'post_type' => 'gallery' ) );
+//dd($query->posts);
+//dd(get_post_type_archive_link());
 ?>
 
 
@@ -113,78 +116,28 @@ get_header();
                     <div class="owl-carousel owl-theme" id="owl-carousel2">
 
                         <div class="row mt-3 mb-5 item">
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
-                                <a href="javascript:;" id="gallery1">
-                                    <div class="image-box square">
-                                        <div class="image-box--fade"></div>
-                                        <div class="image-box--title">ALL NEW D-MAX 2020</div>
-                                        <div class="image-box--text">
-                                            <i data-feather="image" class="fe"></i> 8 image
+                            <?php if ( $query->have_posts() ) : ?>
+
+                                <?php foreach ($query->posts as $item) : ?>
+                                <?php $thumbnail = get_field( 'gallery_cover', $item->ID ); ?>
+                                    
+                                <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
+                                    <a href="<?php echo get_post_permalink($item->ID); ?>" id="gallery1">
+                                        <div class="image-box square">
+                                            <div class="image-box--fade"></div>
+                                            <div class="image-box--title"><?php echo $item->post_title;?></div>
+                                            <div class="image-box--text">
+                                                <i data-feather="image" class="fe"></i> 8 image
+                                            </div>
+                                            <div class="image-box--image" style="background-image: url(<?php echo $thumbnail['sizes']['medium_large']; ?>)"></div>
                                         </div>
-                                        <div class="image-box--image" style="background-image: url(https://source.unsplash.com/IvfoDk30JnI/1500x1000)"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
-                                <a href="javascript:;" id="gallery2">
-                                    <div class="image-box square">
-                                        <div class="image-box--fade"></div>
-                                        <div class="image-box--title">ALL NEW D-MAX 2020</div>
-                                        <div class="image-box--text">
-                                            <i data-feather="image" class="fe"></i> 8 image
-                                        </div>
-                                        <div class="image-box--image" style="background-image: url(https://source.unsplash.com/IvfoDk30JnI/1500x1000)"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
-                                <a href="javascript:;" id="gallery3">
-                                    <div class="image-box square">
-                                        <div class="image-box--fade"></div>
-                                        <div class="image-box--title">ALL NEW D-MAX 2020</div>
-                                        <div class="image-box--text">
-                                            <i data-feather="image" class="fe"></i> 8 image
-                                        </div>
-                                        <div class="image-box--image" style="background-image: url(https://source.unsplash.com/IvfoDk30JnI/1500x1000)"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
-                                <a href="javascript:;" id="gallery4">
-                                    <div class="image-box square">
-                                        <div class="image-box--fade"></div>
-                                        <div class="image-box--title">ALL NEW D-MAX 2020</div>
-                                        <div class="image-box--text">
-                                            <i data-feather="image" class="fe"></i> 8 image
-                                        </div>
-                                        <div class="image-box--image" style="background-image: url(https://source.unsplash.com/IvfoDk30JnI/1500x1000)"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
-                                <a href="javascript:;" id="gallery5">
-                                    <div class="image-box square">
-                                        <div class="image-box--fade"></div>
-                                        <div class="image-box--title">ALL NEW D-MAX 2020</div>
-                                        <div class="image-box--text">
-                                            <i data-feather="image" class="fe"></i> 8 image
-                                        </div>
-                                        <div class="image-box--image" style="background-image: url(https://source.unsplash.com/IvfoDk30JnI/1500x1000)"></div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
-                                <a href="javascript:;" id="gallery5">
-                                    <div class="image-box square">
-                                        <div class="image-box--fade"></div>
-                                        <div class="image-box--title">ALL NEW D-MAX 2020</div>
-                                        <div class="image-box--text">
-                                            <i data-feather="image" class="fe"></i> 8 image
-                                        </div>
-                                        <div class="image-box--image" style="background-image: url(https://source.unsplash.com/IvfoDk30JnI/1500x1000)"></div>
-                                    </div>
-                                </a>
-                            </div>
+                                    </a>
+                                </div>
+
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+
                         </div>
                         
                     </div>
@@ -226,72 +179,6 @@ get_header();
         })
     </script>
 
-    <script>
-
-        $("#gallery1").on('click', function() {
-
-            $.fancybox.open([
-                {
-                    src  : 'https://source.unsplash.com/IvfoDk30JnI/1500x1000',
-                    opts : {
-                    caption : 'First caption',
-                    thumb   : 'https://source.unsplash.com/IvfoDk30JnI/240x160'
-                    }
-                },
-                {
-                    src  : 'https://source.unsplash.com/0JYgd2QuMfw/1500x1000',
-                    opts : {
-                    caption : 'Second caption',
-                    thumb   : 'https://source.unsplash.com/0JYgd2QuMfw/240x160'
-                    }
-                }
-                ], {
-                baseClass: 'myFancyBox',
-                loop : true,
-                thumbs : {
-                    autoStart : true,
-                    axis : 'x'
-                },
-                type : 'image',
-                fitToView : false,
-                afterLoad : function(instance, current) {
-                    var pixelRatio = window.devicePixelRatio || 1;
-
-                    if ( pixelRatio > 1.5 ) {
-                        current.width  = current.width  / pixelRatio;
-                        current.height = current.height / pixelRatio;
-                    }
-                }
-            });
-
-        });
-
-    </script>
-
-    <style>
-        .myFancyBox .fancybox-inner{
-            width: 100%;
-        }
-        .myFancyBox .fancybox-thumbs {
-            top: auto;
-            width: auto;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 95px;
-            padding: 10px 10px 5px 10px;
-            box-sizing: border-box;
-            background: rgba(0, 0, 0, 0.3);
-        }
-
-        .myFancyBox .fancybox-show-thumbs .fancybox-inner {
-            right: 0;
-            bottom: 95px;
-        }
-        .fancybox-inner{
-            padding: 100px;
-        }
-    </style>
 
 <?php
 get_footer();

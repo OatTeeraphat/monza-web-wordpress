@@ -13,11 +13,12 @@
 
 $header_nav = get_field('header_nav', 'option');
 
-$url = get_the_permalink();
+$url = get_post_permalink(get_queried_object_id());
+
 $en_permalink = apply_filters( 'wpml_permalink', $url , 'en' ); 
 $th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
 
-#dd($en_permalink);
+
 ?>
 <!doctype html>
 <html>

@@ -451,22 +451,31 @@
 
 <script>
 
-    function applyBeforeunload() {
-        $(window).on('beforeunload', function() {
-            $('body').hide();
-            $(window).scrollTop(0);
-        });
-    }
-    //applyBeforeunload();
-    $(document).on('click', '[samepage]', function() {
-        $(window).off('beforeunload');
-        setTimeout(applyBeforeunload, 100);
-    });
+    <?php if ( !WP_DEBUG ) : ?>
 
-    setTimeout(() => {
+        function applyBeforeunload() {
+            $(window).on('beforeunload', function() {
+                $('body').hide();
+                $(window).scrollTop(0);
+            });
+        }
+        //applyBeforeunload();
+        $(document).on('click', '[samepage]', function() {
+            $(window).off('beforeunload');
+            setTimeout(applyBeforeunload, 100);
+        });
+
+        setTimeout(() => {
+            $("body").removeClass('overflow-hidden');
+            $("#preload").fadeOut(300);
+        }, 1500);
+
+    <?php else : ?>
+
         $("body").removeClass('overflow-hidden');
-        $("#preload").fadeOut(300);
-    }, 1500);
+        $("#preload").hide();
+
+    <?php endif;?>
 
 </script>
 
