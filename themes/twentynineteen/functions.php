@@ -350,3 +350,39 @@ function get_permalink_wpml($postname, $lang) {
 
 }
 
+
+
+function gallery__adapter_video($gallery_video, $lang) {
+
+	$_gallery_video = array();
+
+	foreach ($gallery_video as $key => $item) {
+
+		if ($lang == 'th') {
+			$youtube_id = parse_url($item['field_5fe78ae007610']);
+		} else {
+			$youtube_id = parse_url($item['field_5fe7c7d9b43fc']);
+		}
+
+		if (isset($youtube_id['query'])) {
+			parse_str($youtube_id['query']);
+
+			if (($youtube_id['host'] == 'www.youtube.com' && !empty($v))) {
+				$_g = array();
+				$_g['_video_id'] = $v;
+				if ($lang == 'th') {
+					$_g['gallery-video-url'] = str_replace('https', 'http', $item['field_5fe78ae007610']);
+					$_g['gallery-video-name'] = $item['field_5fe78f9d98664'];
+				} else {
+					$_g['gallery-video-url'] = str_replace('https', 'http', $item['field_5fe7c7d9b43fc']);
+					$_g['gallery-video-name'] = $item['field_5fe7c7d9b43e3'];
+				}
+				array_push($_gallery_video , $_g);
+			}
+			
+		}
+	};
+
+	return $_gallery_video;
+
+}

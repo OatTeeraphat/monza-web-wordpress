@@ -29,7 +29,7 @@ $contact_form = get_field('contact_form');
     </div>
     
 <!-- map -->
-    <section>
+    <section class="page-contact">
         <div class="container" style="overflow: visible">
             <div class="row">
                 <div class="map col-12 col-md-6 order-2 order-md-1">

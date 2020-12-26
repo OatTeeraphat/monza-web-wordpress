@@ -18,6 +18,7 @@ $url = get_post_permalink(get_queried_object_id());
 $en_permalink = apply_filters( 'wpml_permalink', $url , 'en' ); 
 $th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
 
+//dd(get_queried_object_id());
 
 ?>
 <!doctype html>
@@ -219,6 +220,8 @@ $th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
             var navbar = $('#nav-stickky');
             var wpbar = $('#wpadminbar');
             var sub = $(".navbar-sub");
+
+            wpbar.addClass('d-none')
             
             $(window).scroll(function(){
 

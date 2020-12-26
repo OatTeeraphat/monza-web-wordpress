@@ -6,3 +6,15 @@
     url("./Antique_Olive_Std_5.ttf") format("truetype") /* chrome firefox opera Safari, Android, iOS 4.2+*/
 }
 
+@font-face {
+    font-family: 'PSL X Olarn';
+    src: url('pslxolarn_italic-webfont.eot');
+    src: url('pslxolarn_italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('pslxolarn_italic-webfont.woff2') format('woff2'),
+         url('pslxolarn_italic-webfont.woff') format('woff'),
+         url('pslxolarn_italic-webfont.ttf') format('truetype'),
+         url('pslxolarn_italic-webfont.svg#pslxolarnitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

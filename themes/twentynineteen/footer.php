@@ -451,7 +451,7 @@
 
 <script>
 
-    <?php if ( !WP_DEBUG ) : ?>
+    <?php if ( WP_DEBUG ) : ?>
 
         function applyBeforeunload() {
             $(window).on('beforeunload', function() {
@@ -486,6 +486,18 @@
     .navbar-nav a {
         font-size: 15px;
         letter-spacing: 0.75px;
+    }
+    .section_title {
+        font-weight: 100;
+        letter-spacing: 3px;
+    }
+    .product_cover_text h2 {
+        font-size: 105px;
+        line-height: 0.75em;
+    }
+    .page-gallery .section_title, .page-contact .section_title {
+        font-size: 60px;
+        line-height: 0.7em;
     }
 
 <?php endif;?>
