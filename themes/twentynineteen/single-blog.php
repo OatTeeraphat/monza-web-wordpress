@@ -11,9 +11,27 @@
 
 get_header();
 ?>
+
+<?php 
+
+$postblog_banner = get_field('postblog_banner');
+$postblog_title = get_field('postblog_title');
+
+
+//dd($postblog_title);
+
+
+?>
     
-<!-- Cover -->
-    <div class="push-cover"></div>
+<!--Banner-->
+
+<div class="product_cover" style="background-image: url('<?php echo $postblog_banner['postblog_banner_bg']['sizes']['1536x1536']?>');">  
+        <div class="fade-box"></div>
+        <div class="product_cover_text">    
+            <h2 class="section_title"><?php echo $postblog_banner['postblog_banner_title']?></h2>
+            <h4><?php echo $postblog_banner['postblog_banner_subtitle']?></h4>
+        </div>
+    </div>
 
 
 <!-- Content -->
@@ -34,12 +52,10 @@ get_header();
                 <div class="row">
                     <div class="col">
                         <div class="mb-5 mx-2">
-                            <h3 class="text-center mb-1 title"><strong>All New D-Max Officialy 2020. </strong></h3>
+                            <h3 class="text-center mb-1 title"><strong><?php echo $postblog_title['postblog_title_main']?></strong></h3>
                             <p class="text-center text-secondary m-0">
                                 <time datetime="2020-10-21T18:00:00">
-                                    <i data-feather="bookmark" class="fe mr-1" style="width: 16px;"></i>
-                                    By admin • 1 month ago
-                                </time>
+                                    <i data-feather="bookmark" class="fe mr-1" style="width: 16px;"></i><?php echo $postblog_title['postblog_title_sub']?></time>
                             </p>
                             <hr>
                         </div>
@@ -52,18 +68,11 @@ get_header();
                             <img class="w-100" src="./img/vdo_image 9.png" alt="">
                         </div>
                         <div class="mt-4 mx-0 mx-md-0">
-                            <h5><strong>The standard Lorem IpsumThe standard Lorem Ipsum</strong></h5>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. </p>
+                            <div class="postblog_blog">
+                                <img src="<?php echo $postblog_title['postblog_title_imgblog']['sizes']['1536x1536']?>" alt="">
+                                <p><?php echo $postblog_title['postblog_title_blog']?></p>
+                            </div>
                             
-                            <h5><strong>The standard Lorem IpsumThe standard Lorem Ipsum</strong></h5>
-                            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur</p>
-                            
-                            <h5><strong>The standard Lorem IpsumThe standard Lorem Ipsum</strong></h5>
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Soluta distinctio consequatur qui saepe sint vero exercitationem repellat, ipsa omnis ullam nesciunt reiciendis iste impedit praesentium inventore necessitatibus tempora. Esse, iste?
-                            Et, assumenda architecto? Facilis, cum reiciendis delectus animi numquam esse quae deserunt praesentium dolores, modi ipsam exercitationem ipsa obcaecati labore assumenda odit nulla mollitia vitae libero maxime asperiores expedita autem.
-                            Tenetur culpa omnis, unde vero laboriosam aperiam adipisci ad reprehenderit nihil? Eligendi amet quia facilis perferendis non hic. Facilis recusandae illo eligendi reprehenderit quaerat est tenetur dolorum fugit rem! Quae!
-                            Eum, nobis? Laudantium ipsa non, facilis dolore aliquid laborum a! Omnis aperiam beatae, fuga sunt, reprehenderit vel recusandae delectus earum facere id voluptatem culpa, vero ipsum illo veniam magnam quas!
-                            Repudiandae soluta id sapiente nobis repellendus architecto qui eius inventore! Dolorum mollitia numquam doloribus accusamus reprehenderit corporis aspernatur rem, eum eos aut sapiente quibusdam atque dolor soluta, similique veniam minus?</p>
                         </div>
                     </div>
                 </div>
