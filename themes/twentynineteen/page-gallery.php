@@ -9,7 +9,7 @@
 get_header();
 
 $query = new WP_Query( array( 'post_type' => 'gallery' ) );
-//dd($query->posts);
+dd($query->posts);
 //dd(get_post_type_archive_link());
 ?>
 

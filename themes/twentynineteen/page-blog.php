@@ -5,6 +5,10 @@
 */
 
 get_header();
+
+
+
+
 ?>
 
 
@@ -37,20 +41,21 @@ get_header();
                 <div class="blog-vdo col-12 col-lg-6">
                     <div class="owl-carousel owl-theme">
                         <div class="row my-3 item">
-                            <div class="col-12">
-                                <a href="#">
-                                    <div class="video-box">
-                                        <div class="play-button">
-                                            <span class="triangle-right"></span>
+            
+                                <div class="col-12">
+                                    <a href="#">
+                                        <div class="video-box">
+                                            <div class="play-button">
+                                                <span class="triangle-right"></span>
+                                            </div>
+                                            <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/K2fhljO9V00/maxresdefault.jpg)"></div>
                                         </div>
-                                        <div class="video-box--image" style="background-image: url(https://img.youtube.com/vi/K2fhljO9V00/maxresdefault.jpg)"></div>
-                                    </div>
-                                    <div class="my-3 mx-0 mx-md-2">
-                                        <h3 class="mb-2">All New D-Max</h3>
-                                        <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                                    </div>
-                                </a>
-                            </div>
+                                        <div class="my-3 mx-0 mx-md-2">
+                                            <h3 class="mb-2">All New D-Max</h3>
+                                            <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
+                                        </div>
+                                    </a>
+                                </div>
                         </div>
                         <div class="row my-3 item">
                             <div class="col-12">
