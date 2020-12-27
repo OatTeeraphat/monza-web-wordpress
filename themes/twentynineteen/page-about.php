@@ -90,8 +90,8 @@ $about_content = get_field('about_content');
 
                 <div class="product_cover" style="background-image: url('<?php echo $item['about_content_center']['about_center_img']['sizes']['1536x1536']; ?>');"> 
                     <div class="fade-box"></div>
-                    <div class="product_cover_text">    
-                        <h2 class="section_title"><?php echo $item['about_content_center']['about_center_header']; ?></h2>
+                    <div class="product_cover_text ">    
+                        <h2 class="product_cover_text_center section_title"><?php echo $item['about_content_center']['about_center_header']; ?></h2>
                         <h4><?php echo $item['about_content_center']['about_center_content']; ?></h4>
                     </div>
                 </div>
