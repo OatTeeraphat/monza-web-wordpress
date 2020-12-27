@@ -451,7 +451,7 @@
 
 <script>
 
-    <?php if ( WP_DEBUG ) : ?>
+    <?php if ( !WP_ENVIRONMENT_DEV ) : ?>
 
         function applyBeforeunload() {
             $(window).on('beforeunload', function() {
@@ -490,9 +490,10 @@
     .section_title {
         font-weight: 100;
         letter-spacing: 3px;
+        font-family : 'PSL X Olarn', sans-serif;
     }
     .product_cover_text h2 {
-        font-size: 105px;
+        font-size: 120px;
         line-height: 0.75em;
     }
     .page-gallery .section_title, .page-contact .section_title {

@@ -5,6 +5,11 @@
 */
 
 get_header();
+
+$term = get_term_by( 'slug', 'กรุงเทพมหานคร', 'dealer-country' );
+$term = get_term_link($term->slug, 'dealer-country');
+dd($term);
+
 ?>
 
 <!-- Banner -->

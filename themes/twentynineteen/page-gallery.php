@@ -91,7 +91,7 @@ $gallery_page_picture = get_field('gallery_page_picture');
                                 <?php $thumbnail = get_field( 'gallery_cover', $item->ID ); ?>
                                     
                                 <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
-                                    <a href="<?php echo get_post_permalink($item->ID); ?>" id="gallery1">
+                                    <a href="<?php echo get_post_permalink($item->ID); ?>">
                                         <div class="image-box square">
                                             <div class="image-box--fade"></div>
                                             <div class="image-box--title"><?php echo $item->post_title;?></div>
