@@ -44,7 +44,7 @@ $query = new WP_Query( array( 'post_type' => 'blog' ) );
                 <div class="blog-vdo col-12 col-lg-6">
                     <div class="owl-carousel owl-theme">
                         <?php if ( $query->have_posts() ) : ?>
-
+                            
                             <?php foreach ($query->posts as $item) : ?>
                             <?php $postblog_title = get_field('postblog_title', $item->ID ); ?> 
                                 <div class="row my-3 item">        
@@ -73,38 +73,29 @@ $query = new WP_Query( array( 'post_type' => 'blog' ) );
                     
                 </div>
                 <div class="col-12 col-lg-6">
-                    <div class="row " style="justify-content: center;">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="home-blog-img my-3" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/blog_01.jpg');">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-8 mt-0 mt-md-2 mb-4 pl-3 pl-md-0">
-                            <h4 class="my-2">Auto Salon 2020</h4>
-                            <p class="mb-md-2 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores </p>
-                        </div>
-                    </div>
+                    <a href="<?php echo get_post_permalink($item->ID); ?>">
+                        <div class="row " style="justify-content: center;">
 
-                    
-                    <div class="row " style="justify-content: center;">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="home-blog-img my-3" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/blog_02.jpg');">
-                            </div>
+                            <?php if ( $query->have_posts() ) : ?>
+                                <?php $hilight3blog = array_slice($query->posts, 0, 3);?>
+                                <?php foreach ($hilight3blog as $item) : ?>
+                                <?php $postblog_title = get_field('postblog_title', $item->ID ); ?>  
+                                        <div class="col-12 col-md-6 col-lg-4">
+                                            <div class="home-blog-img my-3" style="background-image: url('<?php echo $postblog_title['postblog_title_imgblog']['sizes']['medium_large']; ?>');">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6 col-lg-8 mt-0 mt-md-2 mb-4 pl-3 pl-md-0">
+                                            <h4 class="my-2"><?php echo $item->post_title;?></h4>
+                                            <p class="mb-md-2 p-0">
+                                                <?php echo substr(strip_tags($postblog_title['postblog_title_blog']), 0, 150);?>
+                                            </p>
+                                        </div>
+                                    <?php endforeach; ?>
+                                    
+                            <?php endif; ?>
                         </div>
-                        <div class="col-12 col-md-6 col-lg-8 mt-0 mt-md-2 mb-4 pl-3 pl-md-0">
-                            <h4 class="my-2">Auto Salon 2020</h4>
-                            <p class="mb-md-2 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores </p>
-                        </div>
-                    </div>
-                    <div class="row " style="justify-content: center;">
-                        <div class="col-12 col-md-6 col-lg-4">
-                            <div class="home-blog-img my-3" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/blog_03.jpg');">
-                            </div>
-                        </div>
-                        <div class="col-12 col-md-6 col-lg-8 mt-0 mt-md-2 mb-4 pl-3 pl-md-0">
-                            <h4 class="my-2">Auto Salon 2020</h4>
-                            <p class="mb-md-2 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores </p>
-                        </div>
-                    </div>
+
+                    </a>   
                 </div>  
             </div>
             
@@ -131,17 +122,12 @@ $query = new WP_Query( array( 'post_type' => 'blog' ) );
                             <div class="col-12 col-md-6 mb-4 mb-md-5">
                                 <a href="<?php echo get_post_permalink($item->ID); ?>">
                                     <div class="video-box">
-                                        <div class="play-button">
-                                            <span class="triangle-right"></span>
-                                        </div>
                                         <div class="video-box--image" style="background-image: url(<?php echo $postblog_title['postblog_title_imgblog']['sizes']['medium_large']; ?>)"></div>
                                     </div>
                                     <div class="my-3 mx-0 mx-md-2">
                                         <h3 class="mb-2 strong"><?php echo $item->post_title;?></h3>
                                         <p class="m-0 p-0">
-                                            <?php 
-                                                echo substr(strip_tags($postblog_title['postblog_title_blog']), 0, 200);
-                                            ?>
+                                            <?php echo substr(strip_tags($postblog_title['postblog_title_blog']), 0, 200);?>
                                         </p>
                                     </div>
                                 </a>

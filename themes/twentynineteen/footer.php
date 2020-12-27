@@ -451,7 +451,7 @@
 
 <script>
 
-    <?php if ( WP_DEBUG ) : ?>
+    <?php if ( !WP_ENVIRONMENT_DEV ) : ?>
 
         function applyBeforeunload() {
             $(window).on('beforeunload', function() {
