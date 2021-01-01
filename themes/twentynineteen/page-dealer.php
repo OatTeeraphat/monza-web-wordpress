@@ -8,40 +8,19 @@ get_header();
 ?>
 
 <?php
+
+
 $dealer_banner = get_field('dealer_banner');
 $dealer_flag = get_field('dealer_flag');
 $dealer_thai = get_field('dealer_thai');
 $dealer_pdf = get_field('dealer_pdf');
 
 
-//dd($dealer_name);
+
 
 
 ?>
 
-
-<!--  
-// array of term in tax
-$terms = get_terms([
-    'taxonomy' => 'dealer-country',
-    'hide_empty' => false,
-]);
-
-dd($terms);
-
-// object of acf 1 field
-// $thumbnail = get_field('<name>', $term->taxonomy . '_' . $term->term_id);
-// $term->taxonomy . '_' . $term->term_id = dealer-country_21
-$dealer_name = get_field('dealer_name_' . ICL_LANGUAGE_CODE , 'dealer-country_21');
-$dealer_isInter = get_field('dealer_isInter', 'dealer-country_21');
-
-if ($dealer_isInter) :
-    $dealer_flag = get_field('dealer_flag', 'dealer-country_21');
-    <img src="<?php echo dealer_flag; ?>" >
-endif;
-
-dd($dealer_isInter); 
--->
 
 <!-- Banner -->
 
@@ -68,25 +47,36 @@ dd($dealer_isInter);
                         <div class="row justify-content-center" style=" justify-content: center; ">
                             <div class="col-12 col-md-11">
                                 <div class="owl-carousel owl-theme owl-flag-dealer">
-                                    <?php $terms = get_terms(['taxonomy' => 'dealer-country','hide_empty' => true]); ?>
-                                    <?php foreach ($terms as $item) : ?>
-                                        
-                                        <?php $dealer_name = get_field('dealer_name' . ICL_LANGUAGE_CODE , $item->taxonomy . '_' . $item->term_id);?>
-                                        <?php $dealer_isInter = get_field('dealer_isInter', $item->taxonomy . '_' . $item->term_id);?>
-                                        
-                                        <?php if ($dealer_isInter) : ?>
 
-                                            <?php $dealer_flag = get_field('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?>
 
-                                            <div class="row my-3 item">
-                                                <div class="col-12">
-                                                    <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
-                                                </div>
-                                            </div>
+                                     
 
-                                        <?php endif; ?>
+                                                <?php $terms = get_terms(['taxonomy' => 'dealer-country','hide_empty' => true]); ?>
+                                                <?php foreach ($terms as $item) : ?>
+                                                    
+                                                    <?php $dealer_name = get_field('dealer_name' . ICL_LANGUAGE_CODE , $item->taxonomy . '_' . $item->term_id);?>
+                                                    <?php $dealer_isInter = get_field('dealer_isInter', $item->taxonomy . '_' . $item->term_id);?>
+                                                    
+                                                        <?php if ($dealer_isInter) : ?>
 
-                                    <?php endforeach; ?>
+                                                            <?php $dealer_flag = get_field('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?>
+
+
+                                                                    <div class="row my-3 item">
+                                                                        <div class="col-12">
+                                                                            <a href="<?php echo get_post_permalink('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?> ">
+                                                                             <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
+                                                                            </a>
+
+                                                                        </div>
+                                                                    </div>
+
+                                                        <?php endif; ?>
+
+                                                <?php endforeach; ?>
+
+                                         
+
                                  </div>
                             </div>
                         </div>
@@ -118,7 +108,7 @@ dd($dealer_isInter);
                                             <?php $dealer_name = get_field('dealer_name_' . ICL_LANGUAGE_CODE , $item2->taxonomy . '_' . $item2->term_id);?>
                                             <?php $dealer_isInter = get_field('dealer_isInter', $item2->taxonomy . '_' . $item2->term_id);?>
                                             <?php if (empty($dealer_isInter)) : ?>
-                                                
+
                                                 <a class="dropdown-item" href="#"><?php echo $dealer_name; ?></a>
 
                                             <?php endif; ?>
