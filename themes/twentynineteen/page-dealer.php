@@ -6,9 +6,7 @@
 
 get_header();
 
-$term = get_term_by( 'slug', 'กรุงเทพมหานคร', 'dealer-country' );
-$term = get_term_link($term->slug, 'dealer-country');
-dd($term);
+$gallery_cover = get_field('gallery_cover');
 
 ?>
 
@@ -40,7 +38,6 @@ dd($term);
                                     <div class="row my-3 item">
                                         <div class="col-12">
                                             <img class="img-fluid" src="<?php echo get_template_directory_uri(); ?>/img/dealer/Ellipse10.png" alt="">
-
                                         </div>
                                     </div>
                                     <div class="row my-3 item">

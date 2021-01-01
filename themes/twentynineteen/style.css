@@ -1067,6 +1067,34 @@ a.button,
     background: linear-gradient(0deg, rgb(26 27 25) 0%, rgb(0 0 0 / 1) 37.5%, rgb(0 0 0 / 0.35) 100%);
 }
 
+.carousel-item{
+    height: 400px;
+    width: 100%;
+	background: #000;
+	border-radius: 5px;
+}
+.carousel-item img{
+	position: absolute;
+	left: 0;
+	right: 0;
+	margin: 0 auto;
+	bottom: 0;
+	width: initial;
+}
+.carousel-indicators .list-inline-item{
+	background-color: black;
+	height: 50px;
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.carousel-indicators .list-inline-item a img{
+    height: auto;
+    width: 100%;
+    opacity: 1 !important;
+}
+
 /* Modified Bootstrap*/
 @media (max-width: 1599px) {
 	.baner_youtube_video {
