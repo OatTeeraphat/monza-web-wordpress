@@ -10,6 +10,9 @@ $query = new WP_Query( array( 'post_type' => 'blog' ) );
 //dd($query->posts);
 //dd(get_post_type_archive_link());
 //dd($thumbnail)
+$blog_banner = get_field('blog_banner');
+$blogeven_title = get_field('blogeven_title');
+
 ?>
 
 
@@ -17,13 +20,15 @@ $query = new WP_Query( array( 'post_type' => 'blog' ) );
 
 <!--Banner-->
 
-<div class="product_cover" style="background-image: url('<?php echo get_template_directory_uri(); ?>/img/product-main/cover_product.png');">  
+<div class="abount_cover" style="background-image: url('<?php echo $blog_banner['blog_banner_bg']['sizes']['1536x1536']?>');"> 
         <div class="fade-box"></div>
-        <div class="product_cover_text">    
-            <h2 class="section_title">BLOG & EVENT</h2>
-            <h4>MONZA CARBON FIBRE PERFORMANCE</h4>
+        <div class="abount_cover_text" style="top: 70%; text-align: left;padding-left: 12%;">  
+            <h4><?php echo $blog_banner['blog_banner_subtitle']?></h4>  
+            <h2 class="section_title"><?php echo $blog_banner['blog_banner_title']?></h2>
+            <hr>
+            
         </div>
-    </div>
+</div>
 
 
 
@@ -109,8 +114,8 @@ $query = new WP_Query( array( 'post_type' => 'blog' ) );
 
             <div class="row">
                 <div class="col-12 border-left-green ml-2 ml-md-3">
-                    <h5 class="section_tagline_product mb-0">Monza Product & Event</h5>
-                    <h2 class="section_title mt-2 mb-0">Lasted News</h2>
+                    <h5 class="section_tagline_product mb-0"><?php echo $blogeven_title['blogeven_title_sub']?></h5>
+                    <h2 class="section_title mt-2 mb-0"><?php echo $blogeven_title['blogeven_title_title']?></h2>
                 </div>
             </div>
                    
