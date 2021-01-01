@@ -5,6 +5,9 @@
 */
 
 get_header();
+
+$gallery_cover = get_field('gallery_cover');
+
 ?>
 
 <?php

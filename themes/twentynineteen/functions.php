@@ -386,3 +386,48 @@ function gallery__adapter_video($gallery_video, $lang) {
 	return $_gallery_video;
 
 }
+
+add_action( 'save_post', 'wpse105926_save_post_callback' );
+
+function wpse105926_save_post_callback( $post_id ) {
+	
+	global $post;
+	$type = get_post_type($post->ID);
+	$title = $post->post_title;
+	$title = str_replace(' ', '-', $title);
+
+	if ($type == 'product') {
+
+		$terms_brand = wp_get_post_terms($post->ID, 'brand', array( 'order' => 'ASC', 'orderby' => 'term_id') );
+
+    	// verify post is not a revision
+		if ( ! wp_is_post_revision( $post_id ) ) {
+
+			// unhook this function to prevent infinite looping
+			remove_action( 'save_post', 'wpse105926_save_post_callback' );
+			
+			// update the post slug
+			if (count($terms_brand) > 1) {
+				$_post_name = $terms_brand[0]->name . '-' . $terms_brand[1]->name . '-' . strtolower($title);
+			}
+			else {
+				$_post_name = $terms_brand[0]->name . '-' . strtolower($title);
+			}
+
+			// var_dump($_post_name);
+			// die();
+
+			wp_update_post( array(
+				'ID' => $post_id,
+				'post_name' => $_post_name // do your thing here
+			));
+
+			// re-hook this function
+			add_action( 'save_post', 'wpse105926_save_post_callback' );
+
+		}
+	}
+
+}
+
+
