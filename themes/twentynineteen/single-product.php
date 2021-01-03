@@ -13,8 +13,6 @@ get_header();
 $terms_brand = wp_get_post_terms( $post->ID, 'brand', array( 'order' => 'DESC') );
 $terms_make = wp_get_post_terms( $post->ID, 'make', array( 'order' => 'DESC') );
 
-//dd($terms_brand);
-
 $more_item = new WP_Query( array(
     'post_type' => 'product',
     //'post__not_in' => array(get_the_ID()),
@@ -26,8 +24,10 @@ $more_item = new WP_Query( array(
         )
     )
 ));
-//wp_reset_query();
-//dd($terms_brand);
+
+
+$subproduct_title = get_field('subproduct_title', 'option');
+$subproduct_fitment = get_field('subproduct_fitment', 'option');
 
 ?>
 
@@ -90,12 +90,18 @@ $more_item = new WP_Query( array(
                         <div class="col-12 col-lg-5">
                             <div class="jumbotron jumbotron-fluid" style="padding: 10px; background-color: #0e0e0e; margin-bottom: 0">
                                 <div class="container" style=" display: flex;align-items: center; ">
-                                    <strong style="font-size: 20px; padding: 10px; width: 100px;" >Brand</strong> <?php echo strtoupper ($terms_brand[0]->name); // brand ?>
+                                    <strong style="font-size: 20px; padding: 10px; width: 100px;" >
+                                        <?php echo $subproduct_title['subproduct_title_brand']?>
+
+                                    </strong> <?php echo strtoupper ($terms_brand[0]->name); // brand ?>
                                 </div>
                             </div>
                             <div class="jumbotron jumbotron-fluid" style="padding: 10px; background-color: #141513;margin-bottom: 0">
                                 <div class="container" style=" display: flex;align-items: center;">
-                                <strong style="font-size: 20px; padding: 10px; width: 100px;" >Model</strong>
+                                <strong style="font-size: 20px; padding: 10px; width: 100px;" >
+                                    <?php echo $subproduct_title['subproduct_title_model']?>
+
+                                </strong>
                                 <?php foreach($terms_brand as $key => $item) :?>
                                     <?php if (!in_array($key, [0,1])) : ?>
                                        <span class="mr-1"><?php echo strtoupper ($item->name); // brand ?> </span>
@@ -105,7 +111,11 @@ $more_item = new WP_Query( array(
                             </div>
                             <div class="jumbotron jumbotron-fluid" style="padding: 10px; background-color: #0e0e0e ;margin-bottom: 0">
                                 <div class="container" style=" display: flex;align-items: center;">
-                                    <strong style="font-size: 20px; padding: 10px; width: 100px;" >Years</strong>
+                                    <strong style="font-size: 20px; padding: 10px; width: 100px;" >                                  
+
+                                        <?php echo $subproduct_title['subproduct_title_year']?>
+
+                                    </strong>
                                     <?php foreach($terms_make as $key => $item) :?>
                                         <span class="mr-1"><?php echo strtoupper ($item->name); // brand ?> </span>
                                     <?php endforeach; ?>
@@ -132,13 +142,17 @@ $more_item = new WP_Query( array(
             <div class="row">
                     <div class="col-12">
                         <div class="col-8 border-left-green">
-                            <h3 class="section_tagline_product ">Fitment specification</h3>
+                            <h3 class="section_tagline_product "><?php echo $subproduct_fitment['subproduct_fitment_titlefit']?></h3>
                         </div>
                     </div>
                     <div class="col-12 mt-3">
                         <div class="jumbotron jumbotron-fluid" style="padding: 10px; background-color: #0e0e0e; margin-bottom: 0">
                             <div class="container"style=" display: flex;align-items: center;">
-                                <strong class="product-post-box-size-top" style="font-size: 20px; padding: 10px;width: 200px;" >Box size</strong> 
+                                <strong class="product-post-box-size-top" style="font-size: 20px; padding: 10px;width: 200px;" >
+                                    <?php echo $subproduct_fitment['subproduct_fitment_box']?>
+
+
+                                </strong> 
                                 <p class="product-post-box-size">
                                     <?php echo $product_fitment['product_fitment_1']; ?>
                                 </p>
@@ -146,7 +160,10 @@ $more_item = new WP_Query( array(
                         </div>
                         <div class="jumbotron jumbotron-fluid" style="padding: 10px; background-color: #141513;margin-bottom: 0">
                             <div class="container"style=" display: flex;align-items: center;">
-                                <strong class="product-post-body-top" style="font-size: 20px; padding: 10px;width: 200px;" >Carbon Spec</strong> 
+                                <strong class="product-post-body-top" style="font-size: 20px; padding: 10px;width: 200px;" >
+                                    <?php echo $subproduct_fitment['subproduct_fitment_carbon']?>
+
+                                </strong> 
                                 <p class="product-post-body">
                                     <?php echo $product_fitment['product_fitment_2']; ?>
                                 </p>
@@ -155,7 +172,11 @@ $more_item = new WP_Query( array(
                         </div>
                         <div class="jumbotron jumbotron-fluid" style="padding: 10px; background-color: #0e0e0e ;margin-bottom: 0">
                             <div class="container"style=" display: flex;align-items: center;">
-                                <strong class="product-post-Carbon-Spac-top" style="font-size: 20px; padding: 10px;width: 200px;" >Description </strong> 
+                                <strong class="product-post-Carbon-Spac-top" style="font-size: 20px; padding: 10px;width: 200px;" >
+                                    <?php echo $subproduct_fitment['subproduct_fitment_descrip']?>
+
+                            
+                                 </strong> 
                                 <p class="product-post-Carbon-Spac">
                                     <?php echo $product_fitment['product_fitment_3']; ?>
                                 </p>
@@ -192,7 +213,7 @@ $more_item = new WP_Query( array(
             <div class="row">
                 <div class="col-12">
                     <div class="col-8 border-left-green">
-                        <h3 class="section_tagline_product ">Related Product</h3>
+                        <h3 class="section_tagline_product "><?php echo $subproduct_fitment['subproduct_fitment_related']?></h3>
                     </div>
                 </div>
             </div>

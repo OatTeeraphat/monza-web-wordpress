@@ -15,6 +15,12 @@ $terms_brand = get_terms( array(
 ));
 
 $brand_list = get_terms_by_parent($terms_brand, 0);
+$home_search = get_field('home_search');
+$home_quality = get_field('home_quality');
+$home_product = get_field('home_product');
+$home_gallery = get_field('home_gallery');
+$home_blog = get_field('home_blog');
+
 
 ?>
 
@@ -36,8 +42,8 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
 
             <div class="row justify-content-center">
                 <div class="col-12 text-center">
-                    <div class="section_tagline">MONZA CARBON FIBRE</div>
-                    <h2 class="section_title">PRODUCT FINDER</h2>
+                    <div class="section_tagline"><?php echo $home_search['home_search_subtitle']?></div>
+                    <h2 class="section_title"><?php echo $home_search['home_search_title']?></h2>
                     <hr>
                 </div>
             </div>
@@ -49,7 +55,7 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
 
                         <div class="dropdown col-12 col-md-4 col-xl-4 mb-2">
                             <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdown-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                SELECT BRAND
+                                <?php echo $home_search['home_search_selectbrand']?>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdown-brand">
                                 <?php foreach($brand_list as $item) : ?>
@@ -82,9 +88,9 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
                         </script>
                         <script>
                             $("#dropdown-brand").on("click", function(){
-                                $('#dropdown-brand').text("SELECT BRAND");
-                                $('#dropdown-model').text("SELECT MODEL");
-                                $('#dropdown-make').text("SELECT MAKE");
+                                $('#dropdown-brand').text("<?php echo $home_search['home_search_selectbrand']?>");
+                                $('#dropdown-model').text("<?php echo $home_search['home_search_selectmodel']?>");
+                                $('#dropdown-make').text("<?php echo $home_search['home_search_selectmodel']?>");
                                 $("#product_model").removeClass("show").empty();
                                 $("#product_make").removeClass("show").empty();
                             })
@@ -92,7 +98,7 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
 
                         <div class="dropdown col-12 col-md-4 col-xl-4 mb-2">
                             <button class="btn btn-secondary dropdown-toggle mb-2" id="dropdown-model" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                SELECT MODEL
+                                <?php echo $home_search['home_search_selectmodel']?>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="product_model">
                             </div>
@@ -122,8 +128,8 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
 
                         <script>
                             $("#dropdown-model").on("click", function(){
-                                $('#dropdown-model').text("SELECT MODEL");
-                                $('#dropdown-make').text("SELECT MAKE");
+                                $('#dropdown-model').text("<?php echo $home_search['home_search_selectmodel']?>");
+                                $('#dropdown-make').text("<?php echo $home_search['home_search_selectmodel']?>");
                                 $("#product_make").removeClass("show").empty();
                             })
                         </script>
@@ -131,7 +137,7 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
                         
                         <div class="dropdown col-12 col-md-4 col-xl-4 mb-2">
                             <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdown-make" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                SELECT YEAR
+                                <?php echo $home_search['home_search_selectmodel']?>
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="product_make">
                             </div>
@@ -145,7 +151,7 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
 
                         <script>
                             $("#dropdown-make").on("click", function(){
-                                $('#dropdown-make').text("SELECT MAKE");
+                                $('#dropdown-make').text("<?php echo $home_search['home_search_selectmodel']?>");
                             })
                         </script>
                         
@@ -164,15 +170,17 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
             <div class="container">
                 <div class="row">
                     <div class="col-11 col-lg-6 col-xl-5 text-md-left ml-3 pt-5 mb-5" style="z-index: 1;">
-                        <h2 class="section_title">THAILAND</h2>
-                        <h2 class="section_title">QUALITY</h2>
+                        <h2 class="section_title"><?php echo $home_quality['home_quality_title']?></h2>
+                        
                         <hr class="mt-4" style=" margin: 1px;">
-                        <h4 class="mt-4 mb-3">CARBON FIBRE PARTS</h4>
-                        <p>Since 2099 we have grown a considerable amount and we not only produce carbon fibre parts but offer performance tuning parts, bodyshop facilities, Carbon Kevlar must be monza and center of imported Car accessories from America.</p>
+                        <h4 class="mt-4 mb-3"><?php echo $home_quality['home_quality_subtitle']?></h4>
+                        <p>
+                            <?php echo $home_quality['home_quality_descrip']?>
+                        </p>
                     </div>
                     <div class="img-quality" >
                         <div class="faded-left-right" ></div>
-                        <img src="<?php echo get_template_directory_uri(); ?>/img/home-quality.png">
+                        <img src="<?php echo $home_quality['home_quality_img']['sizes']['medium_large']; ?>">
                     </div>         
                 </div> 
             </div>
@@ -186,8 +194,8 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
         <div class="container">
             <div class="row">
                 <div class="col-12 text-center mb-3">
-                    <div class="section_tagline">TRUS ME PERFORMANCE</div>
-                    <h2 class="section_title">PRODUCT MODEL</h2>
+                    <div class="section_tagline"><?php echo $home_product['home_product_subtitle']?></div>
+                    <h2 class="section_title"><?php echo $home_product['home_product_title']?></h2>
                     <hr class="mb-3">
                 </div>
             </div>
@@ -290,7 +298,7 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
                 </div>
             </div>  
             <div class="row justify-content-md-center mt-2 mb-5 px-4 px-4">
-                <button type="button" class="btn btn-lg btn-outline-primary col-12 col-md-6 col-lg-4">SEE MORE</button>
+                <button type="button" class="btn btn-lg btn-outline-primary col-12 col-md-6 col-lg-4"><?php echo $home_product['home_product_button']?></button>
             </div>    
         </div>
        
@@ -305,8 +313,8 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
     
             <div class="row">
                 <div class="col-12 text-center">
-                    <div class="section_tagline">MONZA CARBON FIBRE</div>
-                    <h2 class="section_title">GALLERY</h2>
+                    <div class="section_tagline"><?php echo $home_gallery['home_gallery_subtitle']?></div>
+                    <h2 class="section_title"><?php echo $home_gallery['home_gallery_title']?></h2>
                     <hr class="mb-4">
                     
                     <!-- 
@@ -358,7 +366,7 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
             </div>
 
             <div class="row justify-content-md-center mt-4 mb-5 px-4">
-                <button type="button" class="btn btn-lg btn-outline-primary col-12 col-md-6 col-lg-4">SEE MORE</button>
+                <button type="button" class="btn btn-lg btn-outline-primary col-12 col-md-6 col-lg-4"><?php echo $home_gallery['home_gallery_button']?></button>
             </div>
 
         
@@ -376,8 +384,8 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
 
             <div class="row">
                 <div class="col-12 text-center">
-                    <div class="section_tagline">MONZA CARBON FIBRE</div>
-                    <h2 class="section_title">BLOG & ACTIVITIES</h2>
+                    <div class="section_tagline"><?php echo $home_blog['home_blog_subtitle']?></div>
+                    <h2 class="section_title"><?php echo $home_blog['home_blog_title']?></h2>
                     <hr class="mb-4">
                 </div>
             </div>
@@ -453,7 +461,7 @@ $brand_list = get_terms_by_parent($terms_brand, 0);
             </div>
 
             <div class="row justify-content-md-center mt-4 pt-4 mb-5 px-4">
-                <button type="button" class="btn btn-lg btn-outline-primary col-12 col-md-6 col-lg-4">SEE MORE</button>
+                <button type="button" class="btn btn-lg btn-outline-primary col-12 col-md-6 col-lg-4"><?php echo $home_blog['home_blog_button']?></button>
             </div>
             
         </div>

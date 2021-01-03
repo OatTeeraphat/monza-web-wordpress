@@ -29,6 +29,7 @@ $gallery_page_picture = get_field('gallery_page_picture');
         <div class="product_cover_text">    
             <h2 class="section_title"><?php echo $gallery_banner['gallery_banner_title']; ?></h2>
             <h4><?php echo $gallery_banner['gallery_banner_subtitle']; ?></h4>
+            <hr>
         </div>
     </div>
 

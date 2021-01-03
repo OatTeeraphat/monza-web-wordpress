@@ -31,6 +31,11 @@ $contact_form = get_field('contact_form');
 
 
 $query = array('post_type' => 'product');
+$product_banner = get_field('product_banner');
+$product_search = get_field('product_search');
+
+
+$query = new WP_Query( array( 'post_type' => 'product' ) );
 
 if (!empty($_GET["search"])) {
 
@@ -64,11 +69,12 @@ $query = new WP_Query( $query );
 
 <!-- Banner -->
 
-    <div class="product_cover" style="background-image: url('<?php echo $contact_banner['contact_banner_bg']['sizes']['1536x1536']?>');"> 
+    <div class="product_cover" style="background-image: url('<?php echo $product_banner['product_banner_bg']['sizes']['1536x1536']?>');"> 
         <div class="fade-box"></div>
-        <div class="product_cover_text">    
-            <h2 class="section_title">HELP</h2>
-            <h4><?php echo $contact_banner['contact_banner_subtitle']?></h4>
+        <div class="abount_cover_text" style="top: 70%; text-align: left;padding-left: 12%;">  
+            <h4><?php echo $product_banner['product_banner_subtitle']?></h4>  
+            <h2 class="section_title"><?php echo $product_banner['product_banner_title']?></h2>
+            <hr>
         </div>
     </div>
     
@@ -82,7 +88,7 @@ $query = new WP_Query( $query );
                         <div class="col-12">
                             <div class="input-group mb-3 input-search">
                                 <div class="input-group-prepend"></div>
-                                <input type="text" class="form-control input-search" placeholder="SEARCH" aria-label="Username" aria-describedby="basic-addon1"style="background-color: #1b1b1a;">
+                                <input type="text" class="form-control input-search" placeholder="<?php echo $product_search['product_search_search']?>" aria-label="Username" aria-describedby="basic-addon1"style="background-color: #1b1b1a;">
                                 <i data-feather="search" class="fe"></i>
                             </div>
                         </div>
@@ -91,7 +97,7 @@ $query = new WP_Query( $query );
                         <div class="col-12">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    SELECT BRAND
+                                    <?php echo $product_search['product_search_brand']?>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdown-brand">
                                     <?php foreach($brand_list as $item) : ?>
@@ -127,9 +133,9 @@ $query = new WP_Query( $query );
 
                     <script>
                         $("#dropdown-brand").on("click", function(){
-                            $('#dropdown-brand').text("SELECT BRAND");
-                            $('#dropdown-model').text("SELECT MODEL");
-                            $('#dropdown-make').text("SELECT MAKE");
+                            $('#dropdown-brand').text("<?php echo $product_search['product_search_brand']?>");
+                            $('#dropdown-model').text("<?php echo $product_search['product_search_model']?> ");
+                            $('#dropdown-make').text("<?php echo $product_search['product_search_make']?>");
                             $("#product_model").removeClass("show").empty();
                             $("#product_make").removeClass("show").empty();
                         })
@@ -139,7 +145,7 @@ $query = new WP_Query( $query );
                         <div class="col-12">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-model" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    SELECT MODEL
+                                    <?php echo $product_search['product_search_model']?> 
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdown-model" id="product_model">
                                 </div>
@@ -171,8 +177,8 @@ $query = new WP_Query( $query );
 
                     <script>
                         $("#dropdown-model").on("click", function(){
-                            $('#dropdown-model').text("SELECT MODEL");
-                            $('#dropdown-make').text("SELECT MAKE");
+                            $('#dropdown-model').text("<?php echo $product_search['product_search_model']?> ");
+                            $('#dropdown-make').text("<?php echo $product_search['product_search_make']?>");
                             $("#product_make").removeClass("show").empty();
                         })
                     </script>
@@ -181,7 +187,7 @@ $query = new WP_Query( $query );
                         <div class="col-12">
                             <div class="dropdown">
                                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdown-make" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                SELECT MAKE
+                                    <?php echo $product_search['product_search_make']?>
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="dropdown-make" id="product_make">
                                 </div>
@@ -197,7 +203,7 @@ $query = new WP_Query( $query );
 
                     <script>
                         $("#dropdown-make").on("click", function(){
-                            $('#dropdown-make').text("SELECT MAKE");
+                            $('#dropdown-make').text("<?php echo $product_search['product_search_make']?>");
                         })
                     </script>
 
@@ -214,7 +220,7 @@ $query = new WP_Query( $query );
                                     <div class="col-12 col-lg-4">
                                         <div class="dropdown" style="text-align: right;">
                                             <button class="btn btn-third dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" width: inherit;">
-                                            SELECT MODEL
+                                                <?php echo $product_search['product_search_sortby']?>
                                             </button>
                                         </div>
                                     </div>

@@ -11,40 +11,19 @@ $gallery_cover = get_field('gallery_cover');
 ?>
 
 <?php
+
+
 $dealer_banner = get_field('dealer_banner');
 $dealer_flag = get_field('dealer_flag');
 $dealer_thai = get_field('dealer_thai');
 $dealer_pdf = get_field('dealer_pdf');
 
 
-//dd($dealer_name);
+
 
 
 ?>
 
-
-<!--  
-// array of term in tax
-$terms = get_terms([
-    'taxonomy' => 'dealer-country',
-    'hide_empty' => false,
-]);
-
-dd($terms);
-
-// object of acf 1 field
-// $thumbnail = get_field('<name>', $term->taxonomy . '_' . $term->term_id);
-// $term->taxonomy . '_' . $term->term_id = dealer-country_21
-$dealer_name = get_field('dealer_name_' . ICL_LANGUAGE_CODE , 'dealer-country_21');
-$dealer_isInter = get_field('dealer_isInter', 'dealer-country_21');
-
-if ($dealer_isInter) :
-    $dealer_flag = get_field('dealer_flag', 'dealer-country_21');
-    <img src="<?php echo dealer_flag; ?>" >
-endif;
-
-dd($dealer_isInter); 
--->
 
 <!-- Banner -->
 
@@ -81,17 +60,21 @@ dd($dealer_isInter);
 
                                             <?php $dealer_flag = get_field('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?>
 
-                                            <div class="row my-3 item">
-                                                <a href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item->slug; ?>">
-                                                    <div class="col-12 rounded-circle">
-                                                        <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
+                                                    <div class="row my-3 item">
+                                                        <div class="col-12">
+                                                            <a href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item->slug; ?>">
+                                                                <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
+                                                            </a>
+
+                                                        </div>
                                                     </div>
-                                                </a>
-                                            </div>
 
                                         <?php endif; ?>
 
                                     <?php endforeach; ?>
+
+                                         
+
                                  </div>
                             </div>
                         </div>
