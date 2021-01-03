@@ -8,6 +8,14 @@
 */
 
 get_header();
+
+$terms_brand = get_terms( array(
+    'taxonomy' => 'brand',
+    'hide_empty' => 0 
+));
+
+$brand_list = get_terms_by_parent($terms_brand, 0);
+
 ?>
 
 
@@ -37,37 +45,110 @@ get_header();
             <div class="row mt-3 justify-content-center text-center">
                 <div class="col-11 col-md-11 col-xl-12 text-center">
                     <div class="row">
+
+
                         <div class="dropdown col-12 col-md-4 col-xl-4 mb-2">
-                            <button class="btn btn-secondary dropdown-toggle mb-2"  type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdown-brand" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 SELECT BRAND
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu1">
-                            <button class="dropdown-item" href="#">HONDA</button>
-                            <button class="dropdown-item" href="#">IZUSU</button>
-                            <button class="dropdown-item" href="#">TOYOTA</button>
-                            
+                            <div class="dropdown-menu" aria-labelledby="dropdown-brand">
+                                <?php foreach($brand_list as $item) : ?>
+                                    <button class="dropdown-item" onclick="ajaxGetCarModel( <?php echo $item->term_id;?>, '<?php echo $item->name;?>' );">
+                                        <?php echo strtoupper($item->name); ?>
+                                    </button>
+                                <?php endforeach; ?>
                             </div>
                         </div>
+
+                        <script>
+                            function ajaxGetCarModel(parentId, term){
+                                $('#dropdown-brand').text(term.toUpperCase());
+                                $('#dropdown-brand').data("product_brand", term)
+                                baseUrl = "<?php echo get_permalink_wpml('product', ICL_LANGUAGE_CODE); ?>"
+                                $.ajax({
+                                    type: "GET",
+                                    url: baseUrl + "?byParentId=" + parentId,
+                                    dataType : 'JSON',
+                                    success : function(response){
+                                        dropdownItemElm = $("#product_model")
+                                        dropdownItemElm.empty();
+                                        $.each(response, function(i, order){
+                                            fnAjax = "ajaxGetCarMake("+ response[i].term_id + ",'" + response[i].name + "')"
+                                            dropdownItemElm.append('<button class="dropdown-item" onclick="'+ fnAjax +'">' + (response[i].name).toUpperCase() + '</button>');
+                                        })
+                                    }
+                                });
+                            }
+                        </script>
+                        <script>
+                            $("#dropdown-brand").on("click", function(){
+                                $('#dropdown-brand').text("SELECT BRAND");
+                                $('#dropdown-model').text("SELECT MODEL");
+                                $('#dropdown-make').text("SELECT MAKE");
+                                $("#product_model").removeClass("show").empty();
+                                $("#product_make").removeClass("show").empty();
+                            })
+                        </script>
+
                         <div class="dropdown col-12 col-md-4 col-xl-4 mb-2">
-                            <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdownMenuButton2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-secondary dropdown-toggle mb-2" id="dropdown-model" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 SELECT MODEL
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu2">
-                            <button class="dropdown-item" href="#">MODEL 1</button>
-                            <button class="dropdown-item" href="#">MODEL 2</button>
-                            <button class="dropdown-item" href="#">MODEL 3</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="product_model">
                             </div>
                         </div>
+
+                        <script>
+                            function ajaxGetCarMake(parentId, term){
+                                $('#dropdown-model').text(term.toUpperCase());
+                                brand = $('#dropdown-brand').text().toLowerCase();
+                                baseUrl = "<?php echo get_permalink_wpml('product', ICL_LANGUAGE_CODE); ?>"
+                                $.ajax({
+                                    type: "GET",
+                                    url: baseUrl + "?byParentId=" + parentId,
+                                    dataType : 'JSON',
+                                    success : function(response){
+                                        dropdownItemElm = $("#product_make")
+                                        dropdownItemElm.empty();
+                                        $.each(response, function(i, order){
+                                            url = baseUrl + '?search=' + brand +','+ term +',' + response[i].name
+                                            name = "'" + response[i].name + "'"
+                                            dropdownItemElm.append('<a class="dropdown-item" href="'+ url + '" onclick="goSearchProduct('+ name +')"> ' + (response[i].name).toUpperCase() + '</a>');
+                                        })
+                                    }
+                                });
+                            }
+                        </script>
+
+                        <script>
+                            $("#dropdown-model").on("click", function(){
+                                $('#dropdown-model').text("SELECT MODEL");
+                                $('#dropdown-make').text("SELECT MAKE");
+                                $("#product_make").removeClass("show").empty();
+                            })
+                        </script>
+
+                        
                         <div class="dropdown col-12 col-md-4 col-xl-4 mb-2">
-                            <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdownMenuButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="btn btn-secondary dropdown-toggle mb-2" type="button" id="dropdown-make" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 SELECT YEAR
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="dropdownMenu3">
-                            <button class="dropdown-item" href="#">2020</button>
-                            <button class="dropdown-item" href="#">2021</button>
-                            <button class="dropdown-item" href="#">2022</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton" id="product_make">
                             </div>
                         </div>
+
+                        <script>
+                            function goSearchProduct(term){
+                                $('#dropdown-make').text(term.toUpperCase());
+                            }
+                        </script>
+
+                        <script>
+                            $("#dropdown-make").on("click", function(){
+                                $('#dropdown-make').text("SELECT MAKE");
+                            })
+                        </script>
+                        
                     </div>
                 </div>
             </div>

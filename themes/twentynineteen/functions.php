@@ -330,6 +330,9 @@ require get_template_directory() . '/inc/template-tags.php';
 require get_template_directory() . '/inc/customizer.php';
 
 
+/**
+ * Edit By Oat.
+ */
 if ( ! function_exists('dd') ) {
 
     function dd($variable) {
@@ -342,15 +345,38 @@ if ( ! function_exists('dd') ) {
 
 }
 
+/**
+ * Edit By Oat.
+ */
+function json_response($data=null, $httpStatus=200)
+{
+    header_remove();
+    header("Content-Type: application/json");
+    http_response_code($httpStatus);
+    echo json_encode($data);
 
-function get_permalink_wpml($postname, $lang) {
-
-	$url = home_url( '/'. $postname .'/' );
-	return apply_filters( 'wpml_permalink', $url , $lang ); 
-
+    exit();
 }
 
 
+/**
+ * Edit By Oat.
+ */
+function get_permalink_wpml($postname, $lang) {
+	$url = home_url( '/'. $postname .'/' );
+	return apply_filters( 'wpml_permalink', $url , $lang ); 
+}
+
+
+function get_terms_by_parent($term_list, $parent_id) {
+
+    $second_level = array_filter($term_list, function ($t) use ($parent_id){
+        return $t->parent == $parent_id;
+    });
+    
+    return array_values($second_level);
+
+}
 
 function gallery__adapter_video($gallery_video, $lang) {
 
@@ -386,6 +412,7 @@ function gallery__adapter_video($gallery_video, $lang) {
 	return $_gallery_video;
 
 }
+
 
 add_action( 'save_post', 'wpse105926_save_post_callback' );
 

@@ -27,8 +27,7 @@ $more_item = new WP_Query( array(
     )
 ));
 //wp_reset_query();
-
-//dd($more_item->posts);
+//dd($terms_brand);
 
 ?>
 
