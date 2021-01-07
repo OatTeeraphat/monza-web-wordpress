@@ -150,7 +150,7 @@ a:hover, a:focus, a:active {
 .btn {
 	height: 55px;
 	font-size: 20px;
-	min-width: calc(12em + .75rem + 2px);
+	/* min-width: calc(12em + .75rem + 2px); */
 }
 
 .btn-secondary {
@@ -397,7 +397,8 @@ textarea.form-massage::placeholder{
 
 .section_tagline {
 	color: #8D9199;
-	margin-bottom: 15px;
+	margin-bottom: 20px;
+	margin-top: -5px;
 }
 .section_tagline_product{
 	color: #fff;
@@ -426,11 +427,13 @@ textarea.form-massage::placeholder{
     left: 33%;
     z-index: 0;
     overflow: hidden;
+    height: 100%;
 }
 
 .img-quality img {
     width: 100%;
     min-width: 120%;
+    height: 100%;
 }
 
 .faded-left-right {
@@ -438,6 +441,7 @@ textarea.form-massage::placeholder{
     padding: 50%;
     bottom: 0;
     width: 110%;
+    height: 100%;
     background: -o-radial-gradient(60% 50%, 50% 120%, #0B0B0B 0%, rgba(0, 0, 0, 0) 0.01%, #0B0B0B 97.71%);
     background: radial-gradient(43.5% 120% at 45% 80%, #0B0B0B 0%, rgba(0, 0, 0, 0) 0%, #0B0B0B 99%);
     z-index: 1;
@@ -537,14 +541,14 @@ textarea.form-massage::placeholder{
 /* product*/
 
 .product-box h4 {
-	font-size: 18px;
+	font-size: 23px;
 	font-weight: 800;
 	margin: 0;
 	line-height: 1.1;
 	margin-bottom: 5px;
 	white-space: nowrap;
 	-o-text-overflow: clip;
-	   text-overflow: clip;
+	text-overflow: clip;
 	overflow: hidden;
 }
 
@@ -558,12 +562,12 @@ textarea.form-massage::placeholder{
 }
 
 .product-box .card-thumbnail img {
-	height: 95%;
+	height: 90%;
 	width: auto;
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 3%;
+	top: 0;
 	margin: 0 auto;
 	transition: all 0.3s ease;
 	overflow: hidden;
@@ -723,6 +727,10 @@ a.button,
 .mobile_menu_wrapper #mobile_menu_close.button {
 	background: #018041;
 	border-color: #018041;
+}
+
+.footer-social strong{
+	display: block;
 }
 
 .footer-social-icon {
@@ -1104,6 +1112,24 @@ a.button,
     opacity: 1 !important;
 }
 
+
+.section_tagline_product{
+	font-size: 1.033em;
+}
+
+.section_tag{
+
+}
+
+.section_tag .border-left-green h5{
+	
+}
+
+.section_tag .border-left-green h2{
+	font-size: 60px;
+    line-height: 0.7em;
+}
+
 /* Modified Bootstrap*/
 @media (max-width: 1599px) {
 	.baner_youtube_video {
@@ -1174,6 +1200,9 @@ a.button,
 	.h5 {
 		font-size: 16px;
 	}
+	.navbar-hide {
+		top: -600px;
+	}
 	.baner_youtube_video {
 		width: 175%;
 		transform: translateX(-17%) translateY(-5%);
@@ -1185,7 +1214,7 @@ a.button,
 		z-index: 0;
 	}
 	.img-quality img {
-		width: 105%;
+		width: auto;
 	}
 	.home-blog-img {
 		background: #444444;
@@ -1387,10 +1416,6 @@ a.button,
 	}
 	.section_title{
 		font-size: 1.66em;
-	}
-
-	.section_tagline_product{
-		font-size: 1.033em;
 	}
 
 	.product_cover_text h4{

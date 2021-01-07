@@ -367,6 +367,10 @@ function get_permalink_wpml($postname, $lang) {
 	return apply_filters( 'wpml_permalink', $url , $lang ); 
 }
 
+function toggle_language_wpml($th, $en, $lang) {
+	return ($lang == 'th') ? $th : $en;
+}
+
 
 function get_terms_by_parent($term_list, $parent_id) {
 

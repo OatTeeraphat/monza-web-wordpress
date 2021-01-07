@@ -15,6 +15,13 @@ $gallery_img = get_field('gallery_img');
 $gallery_cover = get_field('gallery_cover');
 
 
+$query = new WP_Query(array( 
+    'post_type' => 'gallery',
+    //'post__not_in' => array(get_the_ID()),
+    'posts_per_page' => 3
+));
+
+
 ?>
     
 <!-- Cover -->
@@ -35,7 +42,7 @@ $gallery_cover = get_field('gallery_cover');
                     <div class="col mb-4">
                         <a href="<?php echo get_permalink_wpml('gallery', ICL_LANGUAGE_CODE); ?>">
                             <i data-feather="arrow-left" class="fe mr-1" style="width: 30px;"></i>
-                            GALLERY
+                            <?php echo toggle_language_wpml("แกลลอรี่", "GALLERY", ICL_LANGUAGE_CODE)?>
                         </a>
                     </div>
                 </div>
@@ -82,33 +89,34 @@ $gallery_cover = get_field('gallery_cover');
 
             <div class="row section_tag">
                 <div class="col-12 border-left-green ml-2 ml-md-3">
-                    <h5 class="section_tagline_product mb-0">Monza Product & Event</h5>
-                    <h2 class="section_title mt-2 mb-0">Lasted News</h2>
+                    <h5 class="section_tagline_product mb-0"><?php echo toggle_language_wpml("ภาพกิจกรรมล่าสุด และ ผลิตภัณฑ์", "Monza Product & Event", ICL_LANGUAGE_CODE)?></h5>
+                    <h2 class="section_title mt-1 mb-0"><?php echo toggle_language_wpml("รูปภาพ", "Lasted Gallery", ICL_LANGUAGE_CODE)?></h2>
                 </div>
             </div>
 
+
             <div class="row mt-4">
-                <div class="col-12 col-sm-6 col-lg-4 mb-4">
-                    <div class="home-blog-vdo thumbnail-blog" style="background-image: url(./img/vdo_image\ 9.png)"></div>
-                    <div class="my-3">
-                        <h3 class="mb-2"><strong>All New D-Max</strong></h3>
-                        <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                    </div>
+            <?php if ( $query->have_posts() ) : ?>
+
+                <?php foreach ($query->posts as $item) : ?>
+                <?php $thumbnail = get_field( 'gallery_cover', $item->ID ); ?>
+                    
+                <div class="col-12 col-sm-6 col-md-4 col-xl-4 mb-4">
+                    <a href="<?php echo get_post_permalink($item->ID); ?>">
+                        <div class="image-box square">
+                            <div class="image-box--fade"></div>
+                            <div class="image-box--title"><?php echo $item->post_title;?></div>
+                            <div class="image-box--text">
+                                <i data-feather="image" class="fe"></i> 8 image
+                            </div>
+                            <div class="image-box--image" style="background-image: url(<?php echo $thumbnail['sizes']['medium_large']; ?>)"></div>
+                        </div>
+                    </a>
                 </div>
-                <div class="col-12 col-sm-6 col-lg-4 mb-4">
-                    <div class="home-blog-vdo thumbnail-blog" style="background-image: url(./img/vdo_image\ 9.png)"></div>
-                    <div class="my-3">
-                        <h3 class="mb-2"><strong>All New D-Max</strong></h3>
-                        <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                    </div>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-4 mb-4">
-                    <div class="home-blog-vdo thumbnail-blog" style="background-image: url(./img/vdo_image\ 9.png)"></div>
-                    <div class="my-3">
-                        <h3 class="mb-2"><strong>All New D-Max</strong></h3>
-                        <p class="m-0 p-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti perspiciatis optio possimus dolore! Perferendis aliquid qui.</p>
-                    </div>
-                </div>
+
+                <?php endforeach; ?>
+
+            <?php endif; ?>
 
             </div>
 

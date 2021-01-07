@@ -60,20 +60,18 @@ $dealer_pdf = get_field('dealer_pdf');
 
                                             <?php $dealer_flag = get_field('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?>
 
-                                                    <div class="row my-3 item">
-                                                        <div class="col-12">
-                                                            <a href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item->slug; ?>">
-                                                                <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
-                                                            </a>
+                                                <div class="row my-3 item">
+                                                    <div class="col-12">
+                                                        <a href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item->slug; ?>">
+                                                            <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
+                                                        </a>
 
-                                                        </div>
                                                     </div>
+                                                </div>
 
                                         <?php endif; ?>
 
                                     <?php endforeach; ?>
-
-                                         
 
                                  </div>
                             </div>
@@ -101,17 +99,17 @@ $dealer_pdf = get_field('dealer_pdf');
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <?php $terms = get_terms(['taxonomy' => 'dealer-country','hide_empty' => true]); ?>
-                                        <?php foreach ($terms as $item2) : ?>
-                                            
-                                            <?php $dealer_name = get_field('dealer_name_' . ICL_LANGUAGE_CODE , $item2->taxonomy . '_' . $item2->term_id);?>
-                                            <?php $dealer_isInter = get_field('dealer_isInter', $item2->taxonomy . '_' . $item2->term_id);?>
-                                            <?php if (empty($dealer_isInter)) : ?>
-                                                
-                                                <a class="dropdown-item" href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item2->slug; ?>"><?php echo $dealer_name; ?></a>
+                                <?php foreach ($terms as $item2) : ?>
+                                    
+                                    <?php $dealer_name = get_field('dealer_name_' . ICL_LANGUAGE_CODE , $item2->taxonomy . '_' . $item2->term_id);?>
+                                    <?php $dealer_isInter = get_field('dealer_isInter', $item2->taxonomy . '_' . $item2->term_id);?>
+                                    <?php if (empty($dealer_isInter)) : ?>
+                                        
+                                        <a class="dropdown-item" href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item2->slug; ?>"><?php echo $dealer_name; ?></a>
 
-                                            <?php endif; ?>
+                                    <?php endif; ?>
 
-                                        <?php endforeach; ?>
+                                <?php endforeach; ?>
                            
                             </div>
                         </div>

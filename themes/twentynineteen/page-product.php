@@ -29,18 +29,15 @@ $contact_banner = get_field('contact_banner');
 $contact_map = get_field('contact_map');
 $contact_form = get_field('contact_form');
 
-
 $query = array('post_type' => 'product');
 $product_banner = get_field('product_banner');
 $product_search = get_field('product_search');
-
-
-$query = new WP_Query( array( 'post_type' => 'product' ) );
 
 if (!empty($_GET["search"])) {
 
     $search = htmlspecialchars($_GET["search"]);
     $brand  = explode( ",", $search );
+
     $query  = array(
         'tax_query' => array(
             array(
@@ -56,14 +53,12 @@ if (!empty($_GET["search"])) {
         )
     );
 
+} else {
+    $query = array( 'post_type' => 'product' );
 }
 
 $query = new WP_Query( $query );
 //dd($query->posts);
-
-
-
-
 
 ?>
 
@@ -246,7 +241,7 @@ $query = new WP_Query( $query );
                                         </div>
                                         <div class="card-body">
                                             <h4><?php echo $item->post_title; ?></h4>
-                                            <p class="ection_tagline" style="padding: 0;"><?php echo strtoupper($post_tax); ?></p>
+                                            <p class="section_tagline" style="padding: 0;"><?php echo strtoupper($post_tax); ?></p>
                                             <p><?php echo get_field( 'product_price', $item->ID ); ?>THB</p>
                                         </div>
                                     </div>
