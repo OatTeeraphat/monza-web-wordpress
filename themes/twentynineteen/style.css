@@ -142,9 +142,11 @@ a:hover, a:focus, a:active {
 .nav-sub-item a{
 }
 
+
 .card {
 	border: 0;
 	color: #1A1B19;
+	overflow: hidden;
 }
 
 .btn {
@@ -211,6 +213,9 @@ a:hover, a:focus, a:active {
 	margin-top: 5rem!important;
 }
 
+.m-inherit{
+	margin: inherit!important;
+}
 
 .btn .btn-primary_sand{
 	color: #fff;
@@ -321,12 +326,12 @@ article p{
 }
 .input-search .fe {
 	position: absolute;
-	top: 5px;
+	top: 15px;
 }
 input.form-control{
 	height: 55px;
 	color: #fff !important;
-	font-size: 16px;
+	font-size: 18px;
 }
 input.form-control::placeholder{
 	color: #fff
@@ -404,6 +409,16 @@ textarea.form-massage::placeholder{
 	color: #fff;
 	margin-bottom: 10px;
 
+}
+
+.product-header{
+
+}
+
+.product-header h2{font-size: 35px;}
+
+.product-header h4{
+	
 }
 
 
@@ -554,24 +569,39 @@ textarea.form-massage::placeholder{
 
 .product-box .card-thumbnail {
 	width: 100%;
-	padding: 45%;
+	padding: 50%;
 	position: relative;
 	background: #fff;
-	border-radius: 30px;
 	overflow: hidden;
 }
 
 .product-box .card-thumbnail img {
-	height: 90%;
+	height: 70%;
 	width: auto;
 	position: absolute;
 	left: 0;
 	right: 0;
-	top: 0;
+	top: 15%;
 	margin: 0 auto;
-	transition: all 0.3s ease;
+	transition: all 0.1s ease;
 	overflow: hidden;
 	cursor: pointer;
+}
+
+.product-box .card:hover img{
+	height: 125%;
+	top: -20%;
+	left: -50%;
+}
+
+.product-box .card{
+	position: relative;
+	top: 0;
+	transition: all 0.1s ease;
+}
+
+.product-box .card:hover{
+	top: 3px;
 }
 
 .product-box .badge {
@@ -771,6 +801,10 @@ a.button,
 	padding-top: 35%;
 	background-size: cover;
 	background-position: right center;
+}
+
+.product_cover h2.section_title{
+	
 }
 	
 .product_cover_text{
@@ -1113,9 +1147,7 @@ a.button,
 }
 
 
-.section_tagline_product{
-	font-size: 1.033em;
-}
+.section_tagline_product{margin: 5px 0;}
 
 .section_tag{
 
@@ -1144,10 +1176,12 @@ a.button,
 		background-position: right center;
 	}
 	.abount_cover_text h2{
-		font-size: 105px;
+		font-size: 55px;
+		letter-spacing: 0.75px;
 	}
 	.abount_cover_text h4{
 		font-size: 20px;
+		margin-top: -10px;
 	}
 	.abount_cover_text hr{
 		margin-left: 0%;

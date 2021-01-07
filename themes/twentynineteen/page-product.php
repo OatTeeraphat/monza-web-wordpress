@@ -66,10 +66,10 @@ $query = new WP_Query( $query );
 
     <div class="product_cover" style="background-image: url('<?php echo $product_banner['product_banner_bg']['sizes']['1536x1536']?>');"> 
         <div class="fade-box"></div>
-        <div class="abount_cover_text" style="top: 70%; text-align: left;padding-left: 12%;">  
-            <h4><?php echo $product_banner['product_banner_subtitle']?></h4>  
+        <div class="abount_cover_text text-center" style="top: 70%">  
             <h2 class="section_title"><?php echo $product_banner['product_banner_title']?></h2>
-            <hr>
+            <h4 class="mb-4"><?php echo $product_banner['product_banner_subtitle']?></h4>  
+            <hr class="m-inherit">
         </div>
     </div>
     
@@ -206,20 +206,33 @@ $query = new WP_Query( $query );
 
                 <div class="col-12 col-lg-9">
                     <div class="row">
-                        <div class="col-12">
-                                <div class="row px-3">
-                                    <div class="col-12 col-lg-8  border-left-green">
-                                        <h2 class="section_title mt-2 mb-0">ISUZU &gt; DMAX 2020</h2>
-                                        <h5 class="section_tagline_product">19 Product</h5>
-                                    </div>
-                                    <div class="col-12 col-lg-4">
-                                        <div class="dropdown" style="text-align: right;">
-                                            <button class="btn btn-third dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" width: inherit;">
-                                                <?php echo $product_search['product_search_sortby']?>
-                                            </button>
-                                        </div>
+                        <div class="col-12 pl-4">
+
+                            <?php 
+                            $search = "";
+                            switch ($search) {
+                                case "green":
+                                  $product_header =  toggle_language_wpml('', '', ICL_LANGUAGE_CODE);
+                                  break;
+                                default:
+                                  $product_header =  toggle_language_wpml('สินค้าทั้งหมด', 'ALL PRODUCT', ICL_LANGUAGE_CODE);
+                            }
+                            
+                            ?>
+
+                            <div class="row px-3 product-header">
+                                <div class="col-12 col-lg-8  border-left-green">
+                                    <h2 class="section_title mb-0"><?php echo $product_header ;?></h2>
+                                    <h5 class="section_tagline_product"><?php echo (wp_count_posts( 'product' )->publish)/2; echo ' '; echo toggle_language_wpml('ชิ้น', 'Product', ICL_LANGUAGE_CODE);?></h5>
+                                </div>
+                                <div class="col-12 col-lg-4">
+                                    <div class="dropdown" style="text-align: right;">
+                                        <button class="btn btn-third dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style=" width: inherit;">
+                                            <?php echo $product_search['product_search_sortby']?>
+                                        </button>
                                     </div>
                                 </div>
+                            </div>
                                
                            
                             <div class="row product-box mt-4 mb-2 mb-md-5 px-3">
@@ -241,8 +254,8 @@ $query = new WP_Query( $query );
                                         </div>
                                         <div class="card-body">
                                             <h4><?php echo $item->post_title; ?></h4>
-                                            <p class="section_tagline" style="padding: 0;"><?php echo strtoupper($post_tax); ?></p>
-                                            <p><?php echo get_field( 'product_price', $item->ID ); ?>THB</p>
+                                            <p style="padding: 0;"><?php echo strtoupper($post_tax); ?></p>
+                                            <p><?php echo get_field( 'product_price', $item->ID ); ?> THB</p>
                                         </div>
                                     </div>
                                    </a>

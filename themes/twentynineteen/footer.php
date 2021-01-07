@@ -502,8 +502,20 @@
     .home_quality h2{
         font-size: 90px;
     }
+    .product_cover h2.section_title{
+        font-size: 90px;
+        line-height: 0.75em;
+        letter-spacing : 3px;
+    }
+    .product_cover h4{
+        margin-top: -10px;
+    }
     .product_cover_text h2 {
         font-size: 120px;
+        line-height: 0.75em;
+    }
+    .product-header h2{
+        font-size: 60px;
         line-height: 0.75em;
     }
     .page-gallery .section_title, .page-contact .section_title {
