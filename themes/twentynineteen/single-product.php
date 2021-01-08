@@ -13,8 +13,6 @@ get_header();
 $terms_brand = wp_get_post_terms( $post->ID, 'brand', array( 'order' => 'DESC') );
 $terms_make = wp_get_post_terms( $post->ID, 'make', array( 'order' => 'DESC') );
 
-//dd($terms_brand);
-
 $more_item = new WP_Query( array(
     'post_type' => 'product',
     //'post__not_in' => array(get_the_ID()),
@@ -27,13 +25,6 @@ $more_item = new WP_Query( array(
     )
 ));
 
-// $subproduct_title = get_field('subproduct_title');
-// $subproduct_fitment = get_field('subproduct_fitment');
-
-
-//wp_reset_query();
-
-//dd($subproduct_fitment);
 
 $subproduct_title = get_field('subproduct_title', 'option');
 $subproduct_fitment = get_field('subproduct_fitment', 'option');

@@ -50,35 +50,28 @@ $dealer_pdf = get_field('dealer_pdf');
                         <div class="row justify-content-center" style=" justify-content: center; ">
                             <div class="col-12 col-md-11">
                                 <div class="owl-carousel owl-theme owl-flag-dealer">
+                                    <?php $terms = get_terms(['taxonomy' => 'dealer-country','hide_empty' => true]); ?>
+                                    <?php foreach ($terms as $item) :?>
+                                        
+                                        <?php $dealer_name = get_field('dealer_name' . ICL_LANGUAGE_CODE , $item->taxonomy . '_' . $item->term_id);?>
+                                        <?php $dealer_isInter = get_field('dealer_isInter', $item->taxonomy . '_' . $item->term_id);?>
+                                        
+                                        <?php if ($dealer_isInter) : ?>
 
+                                            <?php $dealer_flag = get_field('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?>
 
-                                     
+                                                <div class="row my-3 item">
+                                                    <div class="col-12">
+                                                        <a href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item->slug; ?>">
+                                                            <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
+                                                        </a>
 
-                                                <?php $terms = get_terms(['taxonomy' => 'dealer-country','hide_empty' => true]); ?>
-                                                <?php foreach ($terms as $item) : ?>
-                                                    
-                                                    <?php $dealer_name = get_field('dealer_name' . ICL_LANGUAGE_CODE , $item->taxonomy . '_' . $item->term_id);?>
-                                                    <?php $dealer_isInter = get_field('dealer_isInter', $item->taxonomy . '_' . $item->term_id);?>
-                                                    
-                                                        <?php if ($dealer_isInter) : ?>
+                                                    </div>
+                                                </div>
 
-                                                            <?php $dealer_flag = get_field('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?>
+                                        <?php endif; ?>
 
-
-                                                                    <div class="row my-3 item">
-                                                                        <div class="col-12">
-                                                                            <a href="<?php echo get_post_permalink('dealer_flag', $item->taxonomy . '_' . $item->term_id); ?> ">
-                                                                             <img class="img-fluid" src="<?php echo $dealer_flag['sizes']['medium_large']; ?>" alt="">
-                                                                            </a>
-
-                                                                        </div>
-                                                                    </div>
-
-                                                        <?php endif; ?>
-
-                                                <?php endforeach; ?>
-
-                                         
+                                    <?php endforeach; ?>
 
                                  </div>
                             </div>
@@ -106,26 +99,26 @@ $dealer_pdf = get_field('dealer_pdf');
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                 <?php $terms = get_terms(['taxonomy' => 'dealer-country','hide_empty' => true]); ?>
-                                        <?php foreach ($terms as $item2) : ?>
-                                            
-                                            <?php $dealer_name = get_field('dealer_name_' . ICL_LANGUAGE_CODE , $item2->taxonomy . '_' . $item2->term_id);?>
-                                            <?php $dealer_isInter = get_field('dealer_isInter', $item2->taxonomy . '_' . $item2->term_id);?>
-                                            <?php if (empty($dealer_isInter)) : ?>
+                                <?php foreach ($terms as $item2) : ?>
+                                    
+                                    <?php $dealer_name = get_field('dealer_name_' . ICL_LANGUAGE_CODE , $item2->taxonomy . '_' . $item2->term_id);?>
+                                    <?php $dealer_isInter = get_field('dealer_isInter', $item2->taxonomy . '_' . $item2->term_id);?>
+                                    <?php if (empty($dealer_isInter)) : ?>
+                                        
+                                        <a class="dropdown-item" href="<?php echo get_permalink_wpml('dealer', ICL_LANGUAGE_CODE ) . $item2->slug; ?>"><?php echo $dealer_name; ?></a>
 
-                                                <a class="dropdown-item" href="#"><?php echo $dealer_name; ?></a>
+                                    <?php endif; ?>
 
-                                            <?php endif; ?>
-
-                                        <?php endforeach; ?>
+                                <?php endforeach; ?>
                            
                             </div>
                         </div>
                         <div class="col-12 col-md-11 px-4">
                             <h3><strong><?php echo $dealer_pdf['dealer_pdf_title']; ?></strong></h3>
                             <p><?php echo $dealer_pdf['dealer_pdf_text']; ?></p>
-                            <button type="button" class="btn btn-lg btn-outline-primary col-12 col-md-4 mt-3" style=" background-color: #008040; border: 0;">
-                            <?php echo $dealer_pdf['dealer_pdf_text']; ?>
-                            </button>
+                            <a type="<?php echo $dealer_pdf['dealer_pdf_button']; ?>" class="btn btn-lg btn-outline-primary col-12 col-md-4 mt-3" style=" background-color: #008040; border: 0;">
+                            <i data-feather="download" class="fe mr-2"></i> Download
+                            </a>
                         </div>
 
                     </div>
@@ -138,7 +131,7 @@ $dealer_pdf = get_field('dealer_pdf');
 
     <script>
         $('.owl-carousel').owlCarousel({
-            loop:true,
+            loop: false,
             responsive:{
                 0:{
                     items:2,

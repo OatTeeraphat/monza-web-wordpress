@@ -99,6 +99,7 @@ $th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
                 <ul class="navbar-nav">
                     <!-- <li class="nav-item active"></li> -->
                     <?php $header_nav_show = array_slice($header_nav, 0, 4);?>
+                    <?php $header_nav_collapse = array_slice($header_nav, 4);?>
                     <?php foreach ( $header_nav_show as $nav) : ?>
 
                         <li class="nav-item nav-toggle-sub">
@@ -121,8 +122,12 @@ $th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
                         </li>
 
                     <?php endforeach; ?>
+                    <?php foreach ( $header_nav_collapse as $nav) : ?>
+                        <li class="nav-item nav-toggle-sub d-lg-none">
+                            <a class="nav-link" href="<?php echo $nav['nav_main_url']; ?>"><span><?php echo $nav['nav_main']; ?></span></a>
+                        </li>
+                    <?php endforeach; ?>
                     
-                    <?php $header_nav_collapse = array_slice($header_nav, 4);?>
                     <?php if (!empty($header_nav_collapse)): ?>
                         <li class="nav-item mr-0 d-none d-xl-block nav-toggle-sub">
                             <a class="nav-link pr-0 pt-2"><i data-feather="menu" class="fe-menu text-white"></i></a>
@@ -164,6 +169,7 @@ $th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
                 <ul class="navbar-nav">
                     <!-- <li class="nav-item active"></li> -->
                     <?php $header_nav_show = array_slice($header_nav, 0, 4);?>
+                    <?php $header_nav_collapse = array_slice($header_nav, 4);?>
                     <?php foreach ( $header_nav_show as $nav) : ?>
 
                         <li class="nav-item nav-toggle-sub">
@@ -179,15 +185,19 @@ $th_permalink = apply_filters( 'wpml_permalink', $url , 'th' );
                                 </li> 
 
                             <?php endforeach; ?>
-
+                                
                             </ul>
                         <?php endif; ?>
 
                         </li>
 
                     <?php endforeach; ?>
+                    <?php foreach ( $header_nav_collapse as $nav) : ?>
+                        <li class="nav-item nav-toggle-sub d-lg-none">
+                            <a class="nav-link" href="<?php echo $nav['nav_main_url']; ?>"><span><?php echo $nav['nav_main']; ?></span></a>
+                        </li>
+                    <?php endforeach; ?>
                     
-                    <?php $header_nav_collapse = array_slice($header_nav, 4);?>
                     <?php if (!empty($header_nav_collapse)): ?>
                         <li class="nav-item mr-0 d-none d-xl-block nav-toggle-sub">
                             <a class="nav-link pr-0 pt-2"><i data-feather="menu" class="fe-menu text-white"></i></a>
