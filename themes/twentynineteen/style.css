@@ -447,12 +447,8 @@ textarea.form-massage::placeholder{
 
 .img-quality img {
     width: 100%;
-<<<<<<< HEAD
-    min-width: 125%;
-=======
     min-width: 120%;
     height: 100%;
->>>>>>> 492f7f26687cbf976ae2c2ca79c6e18098365e67
 }
 
 .faded-left-right {
